@@ -1,0 +1,54 @@
+name: Ariba Guided Buying API
+description: APIs for SAP Ariba Guided Buying, enabling procurement processes, catalog management, and requisition workflows
+image: https://www.ariba.com/ariba-logo.png
+url: https://api.ariba.com/guided-buying
+created: '2024'
+modified: '2024'
+specificationVersion: '0.18'
+apis:
+- name: Ariba Guided Buying API
+  description: Core API for Ariba Guided Buying functionality including requisitions, catalogs, and procurement
+  image: https://www.ariba.com/ariba-logo.png
+  humanURL: https://help.sap.com/docs/ariba/guided-buying
+  baseURL: https://openapi.ariba.com/api/guided-buying/v1
+  tags:
+  - Procurement
+  - Requisitions
+  - Catalog
+  - Shopping
+  - Approvals
+  properties:
+  - type: Documentation
+    url: https://help.sap.com/docs/ariba/guided-buying/api-documentation
+  - type: OpenAPI
+    url: https://api.ariba.com/guided-buying/openapi.json
+  - type: Authentication
+    url: https://help.sap.com/docs/ariba/authentication
+  - type: Postman Collection
+    url: https://www.postman.com/ariba/workspace/guided-buying
+  - type: Rate Limits
+    url: https://help.sap.com/docs/ariba/api-rate-limits
+  - type: Sandbox
+    url: https://sandbox.ariba.com/guided-buying
+  - type: Support
+    url: https://support.ariba.com
+  - type: Terms of Service
+    url: https://www.ariba.com/terms-of-service
+  - type: Privacy Policy
+    url: https://www.ariba.com/privacy-policy
+  - type: SDK
+    url: https://developer.ariba.com/sdk/guided-buying
+  - type: Status Page
+    url: https://status.ariba.com
+  - type: Change Log
+    url: https://developer.ariba.com/changelog/guided-buying
+maintainers:
+- name: SAP Ariba
+  email: api-support@ariba.com
+  url: https://developer.ariba.com
+tags:
+- Procurement
+- B2B
+- Supply Chain
+- ERP
+- SAP
