@@ -8,11 +8,11 @@ description: >-
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-  - Procurement
   - B2B
-  - Supply Chain
   - ERP
+  - Procurement
   - SAP
+  - Supply Chain
 url: >-
   https://raw.githubusercontent.com/api-evangelist/ariba-guided-buying/refs/heads/main/apis.yml
 created: '2024-01-01'
@@ -27,11 +27,11 @@ apis:
     humanURL: https://help.sap.com/docs/ariba/guided-buying
     baseURL: https://openapi.ariba.com/api/guided-buying/v1
     tags:
+      - Approvals
+      - Catalog
       - Procurement
       - Requisitions
-      - Catalog
       - Shopping
-      - Approvals
     properties:
       - type: Documentation
         url: https://help.sap.com/docs/ariba-apis
