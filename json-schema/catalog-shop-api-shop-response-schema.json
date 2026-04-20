@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ariba-guided-buying/refs/heads/main/json-schema/catalog-shop-api-shop-response-schema.json",
+  "title": "ShopResponse",
+  "description": "Response containing catalog items and facets for a shop.",
+  "type": "object",
+  "properties": {
+    "shopID": {
+      "type": "string",
+      "description": "The unique identifier of the shop.",
+      "example": "shop-12345"
+    },
+    "items": {
+      "type": "array",
+      "description": "List of catalog items.",
+      "items": {
+        "$ref": "#/components/schemas/CatalogItem"
+      }
+    },
+    "facets": {
+      "type": "array",
+      "description": "List of filter facets.",
+      "items": {
+        "$ref": "#/components/schemas/Facet"
+      }
+    }
+  }
+}

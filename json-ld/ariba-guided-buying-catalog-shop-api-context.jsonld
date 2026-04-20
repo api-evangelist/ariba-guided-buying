@@ -1,0 +1,80 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "ariba": "https://openapi.ariba.com/schema/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "ItemsResponse": "ariba:ItemsResponse",
+    "items": {
+      "@id": "ariba:items",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "CatalogItem": "ariba:CatalogItem",
+    "extProductId": {
+      "@id": "ariba:extProductId",
+      "@type": "xsd:string"
+    },
+    "leadTime": {
+      "@id": "ariba:leadTime",
+      "@type": "xsd:integer"
+    },
+    "manufactCode": {
+      "@id": "ariba:manufactCode",
+      "@type": "xsd:string"
+    },
+    "manufactName": {
+      "@id": "ariba:manufactName",
+      "@type": "xsd:string"
+    },
+    "price": {
+      "@id": "ariba:price",
+      "@type": "xsd:decimal"
+    },
+    "vendor": {
+      "@id": "ariba:vendor",
+      "@type": "xsd:string"
+    },
+    "vendorName": {
+      "@id": "ariba:vendorName",
+      "@type": "xsd:string"
+    },
+    "vendorPartId": {
+      "@id": "ariba:vendorPartId",
+      "@type": "xsd:string"
+    },
+    "ShopResponse": "ariba:ShopResponse",
+    "shopID": {
+      "@id": "ariba:shopID",
+      "@type": "xsd:string"
+    },
+    "facets": {
+      "@id": "ariba:facets",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "Facet": "ariba:Facet",
+    "name": "schema:name",
+    "values": {
+      "@id": "ariba:values",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "FacetValue": "ariba:FacetValue",
+    "label": {
+      "@id": "ariba:label",
+      "@type": "xsd:string"
+    },
+    "count": {
+      "@id": "ariba:count",
+      "@type": "xsd:integer"
+    },
+    "AutoCompleteResponse": "ariba:AutoCompleteResponse",
+    "suggestions": {
+      "@id": "ariba:suggestions",
+      "@container": "@set",
+      "@type": "xsd:string"
+    }
+  }
+}

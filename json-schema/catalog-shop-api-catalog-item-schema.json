@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ariba-guided-buying/refs/heads/main/json-schema/catalog-shop-api-catalog-item-schema.json",
+  "title": "CatalogItem",
+  "description": "A catalog item from a public catalog on SAP Business Network.",
+  "type": "object",
+  "properties": {
+    "extProductId": {
+      "type": "string",
+      "description": "External product identifier.",
+      "example": "PROD-001"
+    },
+    "leadTime": {
+      "type": "integer",
+      "description": "Lead time in days.",
+      "example": 3
+    },
+    "manufactCode": {
+      "type": "string",
+      "description": "Manufacturer code.",
+      "example": "MANUF-001"
+    },
+    "manufactName": {
+      "type": "string",
+      "description": "Manufacturer name.",
+      "example": "TechCorp"
+    },
+    "price": {
+      "type": "number",
+      "description": "Item price.",
+      "example": 499.99
+    },
+    "vendor": {
+      "type": "string",
+      "description": "Vendor identifier.",
+      "example": "VENDOR-A1B2"
+    },
+    "vendorName": {
+      "type": "string",
+      "description": "Vendor display name.",
+      "example": "Acme Office Supplies"
+    },
+    "vendorPartId": {
+      "type": "string",
+      "description": "Vendor-specific part identifier.",
+      "example": "AOS-LAPTOP-15"
+    }
+  }
+}

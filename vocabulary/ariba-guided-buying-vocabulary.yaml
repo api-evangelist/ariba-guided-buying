@@ -1,0 +1,230 @@
+vocabulary: "1.0.0"
+
+info:
+  provider: "Ariba Guided Buying"
+  description: "Vocabulary mapping operational API dimensions and capability workflows for SAP Ariba Guided Buying procurement platform."
+  created: "2026-04-19"
+  modified: "2026-04-19"
+
+operational:
+  apis:
+    - namespace: ariba-catalog-shop
+      name: Public Catalogs Shop API
+      version: "2026-04"
+      baseUrl: https://openapi.ariba.com/api/catalog-shop/v1/prod
+      status: active
+    - namespace: ariba-asset-mgmt
+      name: Asset Management API
+      version: "2026-02"
+      baseUrl: https://openapi.ariba.com/api/asset-management/v1/prod
+      status: active
+
+  resources:
+    - name: shops
+      description: Catalog shops on SAP Business Network providing supplier product catalogs.
+      apis:
+        - ariba-catalog-shop
+      actions:
+        - get
+        - search
+    - name: catalog-items
+      description: Product catalog items from supplier public catalogs on SAP Business Network.
+      apis:
+        - ariba-catalog-shop
+      actions:
+        - list
+        - search
+        - get
+    - name: facets
+      description: Filter facets for catalog search results.
+      apis:
+        - ariba-catalog-shop
+      actions:
+        - list
+    - name: search-suggestions
+      description: Typeahead search suggestions from catalog search.
+      apis:
+        - ariba-catalog-shop
+      actions:
+        - get
+    - name: requisitions
+      description: Purchase requisitions containing asset line items.
+      apis:
+        - ariba-asset-mgmt
+      actions:
+        - list
+        - count
+        - update
+    - name: asset-line-items
+      description: Individual line items on requisitions requiring asset number assignment.
+      apis:
+        - ariba-asset-mgmt
+      actions:
+        - update
+
+  actions:
+    - name: get
+      httpMethod: GET
+      pattern: read
+    - name: list
+      httpMethod: GET
+      pattern: read
+    - name: count
+      httpMethod: GET
+      pattern: read
+    - name: search
+      httpMethod: GET
+      pattern: query
+    - name: update
+      httpMethod: POST
+      pattern: write
+
+  schemas:
+    core:
+      - name: CatalogItem
+        api: ariba-catalog-shop
+        keyProperties:
+          - extProductId
+          - price
+          - vendorName
+          - leadTime
+      - name: ShopResponse
+        api: ariba-catalog-shop
+        keyProperties:
+          - shopID
+          - items
+          - facets
+      - name: Requisition
+        api: ariba-asset-mgmt
+        keyProperties:
+          - id
+          - status
+          - lineItems
+      - name: AssetLineItem
+        api: ariba-asset-mgmt
+        keyProperties:
+          - lineItemId
+          - assetCategory
+          - assetNumber
+
+  parameters:
+    identifiers:
+      - name: shopID
+        description: Shop identifier on SAP Business Network
+        apis:
+          - ariba-catalog-shop
+      - name: realm
+        description: SAP Ariba realm name identifying the site
+        apis:
+          - ariba-asset-mgmt
+    filters:
+      - name: $filter
+        description: OData-style filter for date ranges
+      - name: $search
+        description: Full-text search term
+      - name: $select
+        description: OData-style field selection
+      - name: $expand
+        description: OData-style entity expansion
+    pagination:
+      - name: $skip
+        description: Offset for pagination
+
+  enums:
+    states:
+      - name: InProgress
+        description: Requisition is in progress in the Asset Workbench
+      - name: Completed
+        description: All asset items on the requisition have been assigned
+      - name: Approved
+        description: Requisition has been fully approved
+    authentication:
+      - name: OAuth2 Client Credentials
+        description: OAuth 2.0 client credentials flow using api.ariba.com token endpoint
+
+  authentication:
+    schemes:
+      - name: OAuth2
+        type: oauth2
+        flow: clientCredentials
+        tokenUrl: https://api.ariba.com/v2/oauth/token
+        description: Per-API OAuth credentials obtained from SAP Ariba Developer Portal
+
+capability:
+  workflows:
+    - name: Procurement Operations
+      file: capabilities/procurement-operations.yaml
+      description: Unified catalog shopping and asset management workflow
+      apisComposited:
+        - ariba-catalog-shop
+        - ariba-asset-mgmt
+      toolCount: 6
+      personas:
+        - Enterprise Buyer
+        - Procurement Administrator
+
+  personas:
+    - id: enterprise-buyer
+      name: Enterprise Buyer
+      description: Employee who uses Guided Buying to search catalogs and create purchase requests.
+      workflows:
+        - Procurement Operations
+    - id: procurement-admin
+      name: Procurement Administrator
+      description: Administrator who manages asset assignments and procurement workflows.
+      workflows:
+        - Procurement Operations
+
+  domains:
+    - name: Catalog Management
+      description: Management of supplier product catalogs on SAP Business Network.
+      resources:
+        - shops
+        - catalog-items
+        - facets
+    - name: Asset Management
+      description: Tracking and assignment of asset numbers to purchased items.
+      resources:
+        - requisitions
+        - asset-line-items
+
+  namespaces:
+    consumed:
+      - ariba-catalog-shop
+      - ariba-asset-mgmt
+    rest:
+      - name: ariba-procurement-api
+        port: 8080
+    mcp:
+      - name: ariba-procurement-mcp
+        port: 9090
+
+  binds:
+    - name: ARIBA_CATALOG_OAUTH_TOKEN
+      description: OAuth token for Public Catalogs Shop API
+      workflows:
+        - Procurement Operations
+    - name: ARIBA_ASSET_OAUTH_TOKEN
+      description: OAuth token for Asset Management API
+      workflows:
+        - Procurement Operations
+
+crossReference:
+  - resource: catalog-items
+    operations:
+      - listShopItems
+      - getShop
+      - getShopAutoComplete
+    workflows:
+      - Procurement Operations
+    personas:
+      - Enterprise Buyer
+  - resource: requisitions
+    operations:
+      - listAssetRequisitions
+      - countAssetRequisitions
+      - updateAssetLineItems
+    workflows:
+      - Procurement Operations
+    personas:
+      - Procurement Administrator

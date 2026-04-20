@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ariba-guided-buying/refs/heads/main/json-schema/asset-management-api-requisition-schema.json",
+  "title": "Requisition",
+  "description": "A purchase requisition with asset line items.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Requisition identifier.",
+      "example": "REQ-500123"
+    },
+    "title": {
+      "type": "string",
+      "description": "Requisition title or description.",
+      "example": "Office Equipment Purchase"
+    },
+    "status": {
+      "type": "string",
+      "description": "Current status of the requisition.",
+      "example": "InProgress",
+      "enum": [
+        "InProgress",
+        "Completed",
+        "Approved",
+        "Pending"
+      ]
+    },
+    "createdDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date and time the requisition was created.",
+      "example": "2026-01-15T09:00:00Z"
+    },
+    "updatedDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date and time the requisition was last updated.",
+      "example": "2026-01-16T10:00:00Z"
+    },
+    "lineItems": {
+      "type": "array",
+      "description": "Line items in the requisition.",
+      "items": {
+        "$ref": "#/components/schemas/AssetLineItem"
+      }
+    }
+  }
+}

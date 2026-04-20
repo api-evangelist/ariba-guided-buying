@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ariba-guided-buying/refs/heads/main/json-schema/asset-management-api-requisitions-response-schema.json",
+  "title": "RequisitionsResponse",
+  "description": "Response containing a list of asset requisitions.",
+  "type": "object",
+  "properties": {
+    "count": {
+      "type": "integer",
+      "description": "Total count of requisitions.",
+      "example": 1
+    },
+    "requisitions": {
+      "type": "array",
+      "description": "List of requisitions with asset line items.",
+      "items": {
+        "$ref": "#/components/schemas/Requisition"
+      }
+    }
+  }
+}

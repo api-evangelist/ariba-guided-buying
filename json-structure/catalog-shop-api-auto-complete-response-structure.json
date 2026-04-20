@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ariba-guided-buying/refs/heads/main/json-structure/catalog-shop-api-auto-complete-response-structure.json",
+  "name": "AutoCompleteResponse",
+  "description": "Response containing typeahead search suggestions.",
+  "type": "object",
+  "properties": {
+    "suggestions": {
+      "type": "array",
+      "description": "List of matching search suggestion strings.",
+      "items": {
+        "type": "string"
+      },
+      "example": [
+        "laptop",
+        "laptop stand"
+      ]
+    }
+  }
+}

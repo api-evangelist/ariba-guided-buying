@@ -1,0 +1,88 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "ariba": "https://openapi.ariba.com/schema/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "Requisition": "ariba:Requisition",
+    "id": {
+      "@id": "ariba:id",
+      "@type": "xsd:string"
+    },
+    "title": {
+      "@id": "ariba:title",
+      "@type": "xsd:string"
+    },
+    "status": {
+      "@id": "ariba:status",
+      "@type": "xsd:string"
+    },
+    "createdDate": {
+      "@id": "ariba:createdDate",
+      "@type": "xsd:dateTime"
+    },
+    "updatedDate": {
+      "@id": "ariba:updatedDate",
+      "@type": "xsd:dateTime"
+    },
+    "lineItems": {
+      "@id": "ariba:lineItems",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "BatchAssetUpdateRequest": "ariba:BatchAssetUpdateRequest",
+    "updates": {
+      "@id": "ariba:updates",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "AssetLineItemUpdate": "ariba:AssetLineItemUpdate",
+    "requisitionId": {
+      "@id": "ariba:requisitionId",
+      "@type": "xsd:string"
+    },
+    "lineItemId": {
+      "@id": "ariba:lineItemId",
+      "@type": "xsd:string"
+    },
+    "assetNumber": {
+      "@id": "ariba:assetNumber",
+      "@type": "xsd:string"
+    },
+    "CountResponse": "ariba:CountResponse",
+    "count": {
+      "@id": "ariba:count",
+      "@type": "xsd:integer"
+    },
+    "AssetLineItem": "ariba:AssetLineItem",
+    "description": "schema:description",
+    "assetCategory": {
+      "@id": "ariba:assetCategory",
+      "@type": "xsd:string"
+    },
+    "quantity": {
+      "@id": "ariba:quantity",
+      "@type": "xsd:integer"
+    },
+    "RequisitionsResponse": "ariba:RequisitionsResponse",
+    "requisitions": {
+      "@id": "ariba:requisitions",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "BatchUpdateResponse": "ariba:BatchUpdateResponse",
+    "processed": {
+      "@id": "ariba:processed",
+      "@type": "xsd:integer"
+    },
+    "succeeded": {
+      "@id": "ariba:succeeded",
+      "@type": "xsd:integer"
+    },
+    "failed": {
+      "@id": "ariba:failed",
+      "@type": "xsd:integer"
+    }
+  }
+}

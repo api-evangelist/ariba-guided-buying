@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ariba-guided-buying/refs/heads/main/json-structure/asset-management-api-count-response-structure.json",
+  "name": "CountResponse",
+  "description": "Response containing count of asset requisitions.",
+  "type": "object",
+  "properties": {
+    "count": {
+      "type": "int32",
+      "description": "Total count of asset requisitions.",
+      "example": 42
+    }
+  }
+}

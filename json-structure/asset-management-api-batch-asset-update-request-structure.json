@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ariba-guided-buying/refs/heads/main/json-structure/asset-management-api-batch-asset-update-request-structure.json",
+  "name": "BatchAssetUpdateRequest",
+  "description": "Request body for batch asset line item updates.",
+  "type": "object",
+  "properties": {
+    "updates": {
+      "type": "array",
+      "description": "List of asset line item updates. Maximum 20 records.",
+      "items": {
+        "$ref": "#/components/schemas/AssetLineItemUpdate"
+      }
+    }
+  },
+  "required": [
+    "updates"
+  ]
+}

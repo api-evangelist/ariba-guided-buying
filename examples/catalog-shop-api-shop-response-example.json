@@ -1,0 +1,9 @@
+{
+  "shopID": "shop-12345",
+  "items": [
+    "sample-value"
+  ],
+  "facets": [
+    "sample-value"
+  ]
+}

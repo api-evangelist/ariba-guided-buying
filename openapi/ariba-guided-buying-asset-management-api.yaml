@@ -1,0 +1,407 @@
+openapi: 3.0.3
+info:
+  title: Ariba Guided Buying - Asset Management API
+  description: >-
+    The Asset Management API enables developers to construct API queries that
+    import asset records into the SAP Ariba solution and assign unique values to
+    asset line items on requisitions. This API is applicable for SAP
+    ERP-integrated sites that have enabled the asset management feature.
+  version: 2026-02
+  contact:
+    name: SAP Ariba Developer Support
+    url: https://developer.ariba.com
+  x-generated-from: documentation
+  x-last-validated: '2026-04-19'
+servers:
+  - url: https://openapi.ariba.com/api/asset-management/v1/prod
+    description: Production environment
+  - url: https://openapi.ariba.com/api/asset-management/v1/sandbox
+    description: Sandbox environment
+security:
+  - OAuth2: []
+tags:
+  - name: Requisitions
+    description: Asset requisition retrieval and update operations
+paths:
+  /requisitions:
+    get:
+      operationId: listAssetRequisitions
+      summary: Ariba Guided Buying List Asset Requisitions
+      description: >-
+        Get requisitions consisting of asset line items that are in the In
+        Progress state in the Asset Workbench in the buying solution. Requisitions
+        move to this state after asset managers finish their approval.
+      tags:
+        - Requisitions
+      parameters:
+        - name: realm
+          in: query
+          required: true
+          description: The SAP Ariba realm name identifying your site.
+          schema:
+            type: string
+          example: mycompany-T
+        - name: $filter
+          in: query
+          required: false
+          description: >-
+            Filter asset-based requisitions by attributes. Example:
+            {TimeCreated eq 2018-09-26T09:00:00Z;TimeUpdated eq
+            2018-09-27T09:00:00Z}
+          schema:
+            type: string
+          example: '{TimeCreated eq 2026-01-01T00:00:00Z}'
+        - name: $count
+          in: query
+          required: false
+          description: Include total count in response when set to true.
+          schema:
+            type: boolean
+          example: true
+        - name: $skip
+          in: query
+          required: false
+          description: Number of records to skip for pagination.
+          schema:
+            type: integer
+          example: 0
+      responses:
+        '200':
+          description: Successfully retrieved asset requisitions.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RequisitionsResponse'
+              examples:
+                listAssetRequisitions200Example:
+                  summary: Default listAssetRequisitions 200 response
+                  x-microcks-default: true
+                  value:
+                    count: 1
+                    requisitions:
+                      - id: REQ-500123
+                        title: Office Equipment Purchase
+                        status: InProgress
+                        createdDate: '2026-01-15T09:00:00Z'
+                        updatedDate: '2026-01-16T10:00:00Z'
+                        lineItems:
+                          - lineItemId: LINE-001
+                            description: Laptop Computer
+                            assetCategory: IT Equipment
+                            quantity: 1
+        '400':
+          description: Bad Request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized - invalid or missing credentials.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden - insufficient permissions.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal Server Error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '504':
+          description: Gateway Timeout.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /requisitions/$count:
+    get:
+      operationId: countAssetRequisitions
+      summary: Ariba Guided Buying Count Asset Requisitions
+      description: >-
+        Get the total count of requisitions consisting of asset line items in
+        the buying solution.
+      tags:
+        - Requisitions
+      parameters:
+        - name: realm
+          in: query
+          required: true
+          description: The SAP Ariba realm name identifying your site.
+          schema:
+            type: string
+          example: mycompany-T
+      responses:
+        '200':
+          description: Successfully retrieved count of asset requisitions.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CountResponse'
+              examples:
+                countAssetRequisitions200Example:
+                  summary: Default countAssetRequisitions 200 response
+                  x-microcks-default: true
+                  value:
+                    count: 42
+        '400':
+          description: Bad Request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized - invalid or missing credentials.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal Server Error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /requisitions/batch/assets:
+    post:
+      operationId: updateAssetLineItems
+      summary: Ariba Guided Buying Update Asset Line Items on Requisitions
+      description: >-
+        Update the Asset field for asset items on requisitions with unique asset
+        values. The requisitions in which all asset items are assigned with
+        unique asset values move under the Completed tab in the Asset Workbench
+        and purchase orders are created after those requisitions are fully
+        approved. Maximum 20 records per request.
+      tags:
+        - Requisitions
+      parameters:
+        - name: realm
+          in: query
+          required: true
+          description: The SAP Ariba realm name identifying your site.
+          schema:
+            type: string
+          example: mycompany-T
+      requestBody:
+        required: true
+        description: Batch of asset line item updates.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BatchAssetUpdateRequest'
+            examples:
+              updateAssetLineItemsRequestExample:
+                summary: Default updateAssetLineItems request
+                x-microcks-default: true
+                value:
+                  updates:
+                    - requisitionId: REQ-500123
+                      lineItemId: LINE-001
+                      assetNumber: ASSET-001234
+      responses:
+        '200':
+          description: Successfully updated asset line items.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BatchUpdateResponse'
+              examples:
+                updateAssetLineItems200Example:
+                  summary: Default updateAssetLineItems 200 response
+                  x-microcks-default: true
+                  value:
+                    processed: 1
+                    succeeded: 1
+                    failed: 0
+        '400':
+          description: Bad Request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized - invalid or missing credentials.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal Server Error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      description: >-
+        OAuth 2.0 authentication. Obtain access token from
+        https://api.ariba.com/v2/oauth/token using client credentials.
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.ariba.com/v2/oauth/token
+          scopes: {}
+  schemas:
+    RequisitionsResponse:
+      title: RequisitionsResponse
+      description: Response containing a list of asset requisitions.
+      type: object
+      properties:
+        count:
+          type: integer
+          description: Total count of requisitions.
+          example: 1
+        requisitions:
+          type: array
+          description: List of requisitions with asset line items.
+          items:
+            $ref: '#/components/schemas/Requisition'
+    CountResponse:
+      title: CountResponse
+      description: Response containing count of asset requisitions.
+      type: object
+      properties:
+        count:
+          type: integer
+          description: Total count of asset requisitions.
+          example: 42
+    BatchAssetUpdateRequest:
+      title: BatchAssetUpdateRequest
+      description: Request body for batch asset line item updates.
+      type: object
+      required:
+        - updates
+      properties:
+        updates:
+          type: array
+          description: List of asset line item updates. Maximum 20 records.
+          items:
+            $ref: '#/components/schemas/AssetLineItemUpdate'
+    AssetLineItemUpdate:
+      title: AssetLineItemUpdate
+      description: An individual asset line item update.
+      type: object
+      required:
+        - requisitionId
+        - lineItemId
+        - assetNumber
+      properties:
+        requisitionId:
+          type: string
+          description: Requisition identifier.
+          example: REQ-500123
+        lineItemId:
+          type: string
+          description: Line item identifier within the requisition.
+          example: LINE-001
+        assetNumber:
+          type: string
+          description: Unique asset number assigned to this line item.
+          example: ASSET-001234
+    BatchUpdateResponse:
+      title: BatchUpdateResponse
+      description: Response for batch asset line item update.
+      type: object
+      properties:
+        processed:
+          type: integer
+          description: Total number of records processed.
+          example: 1
+        succeeded:
+          type: integer
+          description: Number of records successfully updated.
+          example: 1
+        failed:
+          type: integer
+          description: Number of records that failed to update.
+          example: 0
+    Requisition:
+      title: Requisition
+      description: A purchase requisition with asset line items.
+      type: object
+      properties:
+        id:
+          type: string
+          description: Requisition identifier.
+          example: REQ-500123
+        title:
+          type: string
+          description: Requisition title or description.
+          example: Office Equipment Purchase
+        status:
+          type: string
+          description: Current status of the requisition.
+          example: InProgress
+          enum:
+            - InProgress
+            - Completed
+            - Approved
+            - Pending
+        createdDate:
+          type: string
+          format: date-time
+          description: Date and time the requisition was created.
+          example: '2026-01-15T09:00:00Z'
+        updatedDate:
+          type: string
+          format: date-time
+          description: Date and time the requisition was last updated.
+          example: '2026-01-16T10:00:00Z'
+        lineItems:
+          type: array
+          description: Line items in the requisition.
+          items:
+            $ref: '#/components/schemas/AssetLineItem'
+    AssetLineItem:
+      title: AssetLineItem
+      description: An asset line item on a requisition.
+      type: object
+      properties:
+        lineItemId:
+          type: string
+          description: Line item identifier.
+          example: LINE-001
+        description:
+          type: string
+          description: Line item description.
+          example: Laptop Computer
+        assetCategory:
+          type: string
+          description: Asset category classification.
+          example: IT Equipment
+        quantity:
+          type: integer
+          description: Quantity ordered.
+          example: 1
+        assetNumber:
+          type: string
+          description: Assigned asset number (populated after update).
+          example: ASSET-001234
+    ErrorResponse:
+      title: ErrorResponse
+      description: Error response.
+      type: object
+      properties:
+        code:
+          type: integer
+          description: HTTP status code.
+          example: 400
+        message:
+          type: string
+          description: Error message.
+          example: Bad Request

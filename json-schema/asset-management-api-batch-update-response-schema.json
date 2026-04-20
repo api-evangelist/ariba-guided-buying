@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ariba-guided-buying/refs/heads/main/json-schema/asset-management-api-batch-update-response-schema.json",
+  "title": "BatchUpdateResponse",
+  "description": "Response for batch asset line item update.",
+  "type": "object",
+  "properties": {
+    "processed": {
+      "type": "integer",
+      "description": "Total number of records processed.",
+      "example": 1
+    },
+    "succeeded": {
+      "type": "integer",
+      "description": "Number of records successfully updated.",
+      "example": 1
+    },
+    "failed": {
+      "type": "integer",
+      "description": "Number of records that failed to update.",
+      "example": 0
+    }
+  }
+}

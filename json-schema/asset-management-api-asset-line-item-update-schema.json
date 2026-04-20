@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ariba-guided-buying/refs/heads/main/json-schema/asset-management-api-asset-line-item-update-schema.json",
+  "title": "AssetLineItemUpdate",
+  "description": "An individual asset line item update.",
+  "type": "object",
+  "properties": {
+    "requisitionId": {
+      "type": "string",
+      "description": "Requisition identifier.",
+      "example": "REQ-500123"
+    },
+    "lineItemId": {
+      "type": "string",
+      "description": "Line item identifier within the requisition.",
+      "example": "LINE-001"
+    },
+    "assetNumber": {
+      "type": "string",
+      "description": "Unique asset number assigned to this line item.",
+      "example": "ASSET-001234"
+    }
+  },
+  "required": [
+    "requisitionId",
+    "lineItemId",
+    "assetNumber"
+  ]
+}

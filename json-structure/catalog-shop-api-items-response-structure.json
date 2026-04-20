@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ariba-guided-buying/refs/heads/main/json-structure/catalog-shop-api-items-response-structure.json",
+  "name": "ItemsResponse",
+  "description": "Response containing a list of catalog items.",
+  "type": "object",
+  "properties": {
+    "items": {
+      "type": "array",
+      "description": "List of catalog items.",
+      "items": {
+        "$ref": "#/components/schemas/CatalogItem"
+      }
+    }
+  }
+}

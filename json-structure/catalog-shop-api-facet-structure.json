@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ariba-guided-buying/refs/heads/main/json-structure/catalog-shop-api-facet-structure.json",
+  "name": "Facet",
+  "description": "A filter facet for catalog search results.",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Facet name.",
+      "example": "Category"
+    },
+    "values": {
+      "type": "array",
+      "description": "Facet values with counts.",
+      "items": {
+        "$ref": "#/components/schemas/FacetValue"
+      }
+    }
+  }
+}

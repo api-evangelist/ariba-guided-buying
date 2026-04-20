@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ariba-guided-buying/refs/heads/main/json-structure/catalog-shop-api-facet-value-structure.json",
+  "name": "FacetValue",
+  "description": "A single facet value with item count.",
+  "type": "object",
+  "properties": {
+    "label": {
+      "type": "string",
+      "description": "Display label for this facet value.",
+      "example": "Electronics"
+    },
+    "count": {
+      "type": "int32",
+      "description": "Number of items matching this facet value.",
+      "example": 42
+    }
+  }
+}

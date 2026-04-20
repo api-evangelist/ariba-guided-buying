@@ -1,0 +1,361 @@
+openapi: 3.0.3
+info:
+  title: Ariba Guided Buying - Public Catalogs Shop API
+  description: >-
+    The Public Catalogs Shop API enables applications to retrieve data related
+    to catalog items, filter facets, and matching search suggestions from public
+    catalogs on SAP Business Network. This API is supported for use within SAP
+    Ariba Buying, base edition, which is integrated with SAP S/4HANA Cloud
+    Public Edition.
+  version: 2026-04
+  contact:
+    name: SAP Ariba Developer Support
+    url: https://developer.ariba.com
+  x-generated-from: documentation
+  x-last-validated: '2026-04-19'
+servers:
+  - url: https://openapi.ariba.com/api/catalog-shop/v1/prod
+    description: Production environment
+  - url: https://openapi.ariba.com/api/catalog-shop/v1/sandbox
+    description: Sandbox environment
+security:
+  - OAuth2: []
+tags:
+  - name: Shops
+    description: Catalog shop search and retrieval operations
+paths:
+  /Shops({shopID}):
+    get:
+      operationId: getShop
+      summary: Ariba Guided Buying Get Shop Catalog Items and Facets
+      description: >-
+        Retrieves the details of all the catalog items and facets from public
+        catalogs from suppliers on SAP Business Network. Use the $expand
+        parameter to include items and facets in the response.
+      tags:
+        - Shops
+      parameters:
+        - name: shopID
+          in: path
+          required: true
+          description: The unique identifier of the shop on SAP Business Network.
+          schema:
+            type: string
+          example: shop-12345
+        - name: $expand
+          in: query
+          required: false
+          description: >-
+            Expand related entities. Supported values: Items, Facets. Use
+            $expand=Items,Facets to include both.
+          schema:
+            type: string
+          example: Items,Facets
+        - name: $search
+          in: query
+          required: false
+          description: Search term to filter catalog items.
+          schema:
+            type: string
+          example: laptop
+      responses:
+        '200':
+          description: Successfully retrieved catalog items and facets.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShopResponse'
+              examples:
+                getShop200Example:
+                  summary: Default getShop 200 response
+                  x-microcks-default: true
+                  value:
+                    shopID: shop-12345
+                    items:
+                      - extProductId: PROD-001
+                        price: 499.99
+                        vendor: VENDOR-A1B2
+                        vendorName: Acme Office Supplies
+                        vendorPartId: AOS-LAPTOP-15
+                        leadTime: 3
+                        manufactCode: MANUF-001
+                        manufactName: TechCorp
+                    facets:
+                      - name: Category
+                        values:
+                          - label: Electronics
+                            count: 42
+        '400':
+          description: Bad Request - invalid fields in request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal Server Error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /Shops({shopID})/Items:
+    get:
+      operationId: listShopItems
+      summary: Ariba Guided Buying List Shop Catalog Items
+      description: >-
+        Returns the list of all the catalog items and their details from public
+        catalogs on SAP Business Network. Use $search to filter by search term
+        and $select to choose which fields are returned.
+      tags:
+        - Shops
+      parameters:
+        - name: shopID
+          in: path
+          required: true
+          description: The unique identifier of the shop on SAP Business Network.
+          schema:
+            type: string
+          example: shop-12345
+        - name: $search
+          in: query
+          required: false
+          description: Search terms entered by the user.
+          schema:
+            type: string
+          example: office chair
+        - name: $select
+          in: query
+          required: false
+          description: >-
+            Comma-separated list of fields to return. Supported values:
+            extProductId, leadTime, manufactCode, manufactName, price, vendor,
+            vendorName, vendorPartId.
+          schema:
+            type: string
+          example: extProductId,price,vendorName
+      responses:
+        '200':
+          description: Successfully retrieved list of catalog items.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ItemsResponse'
+              examples:
+                listShopItems200Example:
+                  summary: Default listShopItems 200 response
+                  x-microcks-default: true
+                  value:
+                    items:
+                      - extProductId: PROD-001
+                        price: 499.99
+                        vendor: VENDOR-A1B2
+                        vendorName: Acme Office Supplies
+                        vendorPartId: AOS-LAPTOP-15
+                        leadTime: 3
+                        manufactCode: MANUF-001
+                        manufactName: TechCorp
+        '400':
+          description: Bad Request - invalid fields in request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal Server Error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /Shops({shopID})/AutoComplete:
+    get:
+      operationId: getShopAutoComplete
+      summary: Ariba Guided Buying Get Catalog Search Suggestions
+      description: >-
+        Initiates the typeahead search feature and retrieves the list of
+        matching search suggestions from public catalogs on SAP Business
+        Network.
+      tags:
+        - Shops
+      parameters:
+        - name: shopID
+          in: path
+          required: true
+          description: The unique identifier of the shop on SAP Business Network.
+          schema:
+            type: string
+          example: shop-12345
+        - name: $search
+          in: query
+          required: true
+          description: The partial search term entered by the user for typeahead suggestions.
+          schema:
+            type: string
+          example: lap
+      responses:
+        '200':
+          description: Successfully retrieved list of matching search suggestions.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AutoCompleteResponse'
+              examples:
+                getShopAutoComplete200Example:
+                  summary: Default getShopAutoComplete 200 response
+                  x-microcks-default: true
+                  value:
+                    suggestions:
+                      - laptop
+                      - laptop stand
+                      - laptop bag
+        '400':
+          description: Bad Request - invalid fields in request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal Server Error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      description: >-
+        OAuth 2.0 authentication. Obtain access token from
+        https://api.ariba.com/v2/oauth/token using client credentials. Include
+        the application key in the apikey header.
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.ariba.com/v2/oauth/token
+          scopes: {}
+  schemas:
+    ShopResponse:
+      title: ShopResponse
+      description: Response containing catalog items and facets for a shop.
+      type: object
+      properties:
+        shopID:
+          type: string
+          description: The unique identifier of the shop.
+          example: shop-12345
+        items:
+          type: array
+          description: List of catalog items.
+          items:
+            $ref: '#/components/schemas/CatalogItem'
+        facets:
+          type: array
+          description: List of filter facets.
+          items:
+            $ref: '#/components/schemas/Facet'
+    ItemsResponse:
+      title: ItemsResponse
+      description: Response containing a list of catalog items.
+      type: object
+      properties:
+        items:
+          type: array
+          description: List of catalog items.
+          items:
+            $ref: '#/components/schemas/CatalogItem'
+    AutoCompleteResponse:
+      title: AutoCompleteResponse
+      description: Response containing typeahead search suggestions.
+      type: object
+      properties:
+        suggestions:
+          type: array
+          description: List of matching search suggestion strings.
+          items:
+            type: string
+          example:
+            - laptop
+            - laptop stand
+    CatalogItem:
+      title: CatalogItem
+      description: A catalog item from a public catalog on SAP Business Network.
+      type: object
+      properties:
+        extProductId:
+          type: string
+          description: External product identifier.
+          example: PROD-001
+        leadTime:
+          type: integer
+          description: Lead time in days.
+          example: 3
+        manufactCode:
+          type: string
+          description: Manufacturer code.
+          example: MANUF-001
+        manufactName:
+          type: string
+          description: Manufacturer name.
+          example: TechCorp
+        price:
+          type: number
+          description: Item price.
+          example: 499.99
+        vendor:
+          type: string
+          description: Vendor identifier.
+          example: VENDOR-A1B2
+        vendorName:
+          type: string
+          description: Vendor display name.
+          example: Acme Office Supplies
+        vendorPartId:
+          type: string
+          description: Vendor-specific part identifier.
+          example: AOS-LAPTOP-15
+    Facet:
+      title: Facet
+      description: A filter facet for catalog search results.
+      type: object
+      properties:
+        name:
+          type: string
+          description: Facet name.
+          example: Category
+        values:
+          type: array
+          description: Facet values with counts.
+          items:
+            $ref: '#/components/schemas/FacetValue'
+    FacetValue:
+      title: FacetValue
+      description: A single facet value with item count.
+      type: object
+      properties:
+        label:
+          type: string
+          description: Display label for this facet value.
+          example: Electronics
+        count:
+          type: integer
+          description: Number of items matching this facet value.
+          example: 42
+    ErrorResponse:
+      title: ErrorResponse
+      description: Error response returned by the API.
+      type: object
+      properties:
+        code:
+          type: integer
+          description: HTTP status code.
+          example: 400
+        message:
+          type: string
+          description: Error message describing the issue.
+          example: Bad Request

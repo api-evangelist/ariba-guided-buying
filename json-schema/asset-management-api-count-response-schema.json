@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ariba-guided-buying/refs/heads/main/json-schema/asset-management-api-count-response-schema.json",
+  "title": "CountResponse",
+  "description": "Response containing count of asset requisitions.",
+  "type": "object",
+  "properties": {
+    "count": {
+      "type": "integer",
+      "description": "Total count of asset requisitions.",
+      "example": 42
+    }
+  }
+}

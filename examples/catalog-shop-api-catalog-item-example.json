@@ -1,0 +1,10 @@
+{
+  "extProductId": "PROD-001",
+  "leadTime": 3,
+  "manufactCode": "MANUF-001",
+  "manufactName": "TechCorp",
+  "price": 499.99,
+  "vendor": "VENDOR-A1B2",
+  "vendorName": "Acme Office Supplies",
+  "vendorPartId": "AOS-LAPTOP-15"
+}
