@@ -53,7 +53,7 @@ apis:
         url: json-structure/catalog-shop-api-shop-response-structure.json
       - type: JSONStructure
         url: json-structure/catalog-shop-api-catalog-item-structure.json
-      - type: JSON-LD
+      - type: JSONLD
         url: json-ld/ariba-guided-buying-catalog-shop-api-context.jsonld
   - aid: ariba-guided-buying:ariba-guided-buying-asset-management-api
     name: Ariba Guided Buying - Asset Management API
@@ -84,7 +84,7 @@ apis:
         url: json-structure/asset-management-api-requisition-structure.json
       - type: JSONStructure
         url: json-structure/asset-management-api-asset-line-item-structure.json
-      - type: JSON-LD
+      - type: JSONLD
         url: json-ld/ariba-guided-buying-asset-management-api-context.jsonld
 common:
   - type: Website
