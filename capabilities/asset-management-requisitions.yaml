@@ -1,0 +1,191 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Ariba Guided Buying - Asset Management API — Requisitions
+  description: 'Ariba Guided Buying - Asset Management API — Requisitions. 3 operations. Lead operation: Ariba Guided Buying
+    List Asset Requisitions. Self-contained Naftiko capability covering one Ariba Guided Buying business surface.'
+  tags:
+  - Ariba Guided Buying
+  - Requisitions
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ARIBA_GUIDED_BUYING_API_KEY: ARIBA_GUIDED_BUYING_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: asset-management-requisitions
+    baseUri: https://openapi.ariba.com/api/asset-management/v1/prod
+    description: Ariba Guided Buying - Asset Management API — Requisitions business capability. Self-contained, no shared
+      references.
+    resources:
+    - name: requisitions
+      path: /requisitions
+      operations:
+      - name: listassetrequisitions
+        method: GET
+        description: Ariba Guided Buying List Asset Requisitions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: realm
+          in: query
+          type: string
+          description: The SAP Ariba realm name identifying your site.
+          required: true
+        - name: $filter
+          in: query
+          type: string
+          description: 'Filter asset-based requisitions by attributes. Example: {TimeCreated eq 2018-09-26T09:00:00Z;TimeUpdated
+            eq 2018-09-27T09:00:00Z}'
+        - name: $count
+          in: query
+          type: boolean
+          description: Include total count in response when set to true.
+        - name: $skip
+          in: query
+          type: integer
+          description: Number of records to skip for pagination.
+    - name: requisitions-$count
+      path: /requisitions/$count
+      operations:
+      - name: countassetrequisitions
+        method: GET
+        description: Ariba Guided Buying Count Asset Requisitions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: realm
+          in: query
+          type: string
+          description: The SAP Ariba realm name identifying your site.
+          required: true
+    - name: requisitions-batch-assets
+      path: /requisitions/batch/assets
+      operations:
+      - name: updateassetlineitems
+        method: POST
+        description: Ariba Guided Buying Update Asset Line Items on Requisitions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: realm
+          in: query
+          type: string
+          description: The SAP Ariba realm name identifying your site.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.ARIBA_GUIDED_BUYING_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: asset-management-requisitions-rest
+    port: 8080
+    description: REST adapter for Ariba Guided Buying - Asset Management API — Requisitions. One Spectral-compliant resource
+      per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/requisitions
+      name: requisitions
+      description: REST surface for requisitions.
+      operations:
+      - method: GET
+        name: listassetrequisitions
+        description: Ariba Guided Buying List Asset Requisitions
+        call: asset-management-requisitions.listassetrequisitions
+        with:
+          realm: rest.realm
+          $filter: rest.$filter
+          $count: rest.$count
+          $skip: rest.$skip
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/requisitions/count
+      name: requisitions-count
+      description: REST surface for requisitions-$count.
+      operations:
+      - method: GET
+        name: countassetrequisitions
+        description: Ariba Guided Buying Count Asset Requisitions
+        call: asset-management-requisitions.countassetrequisitions
+        with:
+          realm: rest.realm
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/requisitions/batch/assets
+      name: requisitions-batch-assets
+      description: REST surface for requisitions-batch-assets.
+      operations:
+      - method: POST
+        name: updateassetlineitems
+        description: Ariba Guided Buying Update Asset Line Items on Requisitions
+        call: asset-management-requisitions.updateassetlineitems
+        with:
+          realm: rest.realm
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: asset-management-requisitions-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Ariba Guided Buying - Asset Management API — Requisitions. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: ariba-guided-buying-list-asset
+      description: Ariba Guided Buying List Asset Requisitions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: asset-management-requisitions.listassetrequisitions
+      with:
+        realm: tools.realm
+        $filter: tools.$filter
+        $count: tools.$count
+        $skip: tools.$skip
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: ariba-guided-buying-count-asset
+      description: Ariba Guided Buying Count Asset Requisitions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: asset-management-requisitions.countassetrequisitions
+      with:
+        realm: tools.realm
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: ariba-guided-buying-update-asset
+      description: Ariba Guided Buying Update Asset Line Items on Requisitions
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: asset-management-requisitions.updateassetlineitems
+      with:
+        realm: tools.realm
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
