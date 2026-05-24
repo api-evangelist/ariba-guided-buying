@@ -146,6 +146,8 @@ common:
     description: Integrates with SAP ERP systems for asset management and purchase order creation.
   - name: SAP Integration Suite
     description: Extends SAP Ariba functionality through SAP Integration Suite for custom workflows and data transformations.
+- type: LLMsTxt
+  url: https://developer.ariba.com/llms.txt
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
