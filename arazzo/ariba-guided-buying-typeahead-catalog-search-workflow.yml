@@ -1,0 +1,97 @@
+arazzo: 1.0.1
+info:
+  title: Ariba Guided Buying Typeahead Catalog Search
+  summary: Turn a partial search term into a suggestion, then list matching catalog items.
+  description: >-
+    A shopper-style discovery flow over the Public Catalogs Shop API. It starts a
+    typeahead search against a shop with a partial term, captures the top
+    suggestion returned from SAP Business Network, and uses that suggestion to
+    list the matching catalog items with their pricing and vendor details. Every
+    step spells out its request inline so the flow can be read and executed
+    without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: catalogShopApi
+  url: ../openapi/ariba-guided-buying-catalog-shop-api.yaml
+  type: openapi
+workflows:
+- workflowId: typeahead-catalog-search
+  summary: Use typeahead suggestions to drive a catalog item search in a shop.
+  description: >-
+    Calls the autocomplete endpoint with a partial term, takes the first
+    suggested phrase, and lists the catalog items that match that suggestion in
+    the shop.
+  inputs:
+    type: object
+    required:
+    - shopID
+    - partialTerm
+    - accessToken
+    - apikey
+    properties:
+      shopID:
+        type: string
+        description: The unique identifier of the shop on SAP Business Network.
+      partialTerm:
+        type: string
+        description: The partial search term entered by the user (e.g. "lap").
+      accessToken:
+        type: string
+        description: OAuth 2.0 bearer access token obtained via client credentials.
+      apikey:
+        type: string
+        description: The application key sent in the apikey header.
+  steps:
+  - stepId: autoComplete
+    description: >-
+      Initiate the typeahead search and retrieve matching search suggestions
+      from the shop's public catalogs.
+    operationId: getShopAutoComplete
+    parameters:
+    - name: shopID
+      in: path
+      value: $inputs.shopID
+    - name: $search
+      in: query
+      value: $inputs.partialTerm
+    - name: apikey
+      in: header
+      value: $inputs.apikey
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      suggestions: $response.body#/suggestions
+      topSuggestion: $response.body#/suggestions/0
+  - stepId: listItems
+    description: >-
+      List the catalog items that match the top typeahead suggestion, returning
+      product, price and vendor fields.
+    operationId: listShopItems
+    parameters:
+    - name: shopID
+      in: path
+      value: $inputs.shopID
+    - name: $search
+      in: query
+      value: $steps.autoComplete.outputs.topSuggestion
+    - name: $select
+      in: query
+      value: extProductId,price,vendorName
+    - name: apikey
+      in: header
+      value: $inputs.apikey
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      items: $response.body#/items
+      firstProductId: $response.body#/items/0/extProductId
+  outputs:
+    topSuggestion: $steps.autoComplete.outputs.topSuggestion
+    items: $steps.listItems.outputs.items
+    firstProductId: $steps.listItems.outputs.firstProductId

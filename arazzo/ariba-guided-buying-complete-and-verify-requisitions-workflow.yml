@@ -1,0 +1,121 @@
+arazzo: 1.0.1
+info:
+  title: Ariba Guided Buying Complete And Verify Requisitions
+  summary: Assign an asset number to an in-progress requisition, then re-count the remaining backlog.
+  description: >-
+    An Asset Workbench drain flow over the Asset Management API. It lists the
+    asset requisitions still In Progress, assigns a unique asset number to the
+    first line item of the first requisition to push it toward Completed, and
+    then re-reads the total requisition count so the caller can confirm the
+    backlog after the update. Every step spells out its request inline so the
+    flow can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: assetManagementApi
+  url: ../openapi/ariba-guided-buying-asset-management-api.yaml
+  type: openapi
+workflows:
+- workflowId: complete-and-verify-requisitions
+  summary: Assign an asset number to drain one requisition, then verify the remaining count.
+  description: >-
+    Lists in-progress asset requisitions, assigns the supplied unique asset
+    number to the first line item of the first requisition, and re-reads the
+    total count to verify how many requisitions remain.
+  inputs:
+    type: object
+    required:
+    - realm
+    - accessToken
+    - assetNumber
+    properties:
+      realm:
+        type: string
+        description: The SAP Ariba realm name identifying your site (e.g. mycompany-T).
+      accessToken:
+        type: string
+        description: OAuth 2.0 bearer access token obtained via client credentials.
+      assetNumber:
+        type: string
+        description: The unique asset number to assign to the selected line item.
+  steps:
+  - stepId: listRequisitions
+    description: >-
+      List the in-progress asset requisitions to choose one for asset number
+      assignment.
+    operationId: listAssetRequisitions
+    parameters:
+    - name: realm
+      in: query
+      value: $inputs.realm
+    - name: $count
+      in: query
+      value: true
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      startingCount: $response.body#/count
+      requisitionId: $response.body#/requisitions/0/id
+      lineItemId: $response.body#/requisitions/0/lineItems/0/lineItemId
+    onSuccess:
+    - name: hasRequisition
+      type: goto
+      stepId: assignAssetNumber
+      criteria:
+      - context: $response.body
+        condition: $.requisitions.length > 0
+        type: jsonpath
+    - name: noRequisition
+      type: goto
+      stepId: recountRequisitions
+      criteria:
+      - context: $response.body
+        condition: $.requisitions.length == 0
+        type: jsonpath
+  - stepId: assignAssetNumber
+    description: >-
+      Assign the supplied unique asset number to the first line item of the
+      first requisition via a batch update.
+    operationId: updateAssetLineItems
+    parameters:
+    - name: realm
+      in: query
+      value: $inputs.realm
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    requestBody:
+      contentType: application/json
+      payload:
+        updates:
+        - requisitionId: $steps.listRequisitions.outputs.requisitionId
+          lineItemId: $steps.listRequisitions.outputs.lineItemId
+          assetNumber: $inputs.assetNumber
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      succeeded: $response.body#/succeeded
+      failed: $response.body#/failed
+  - stepId: recountRequisitions
+    description: >-
+      Re-read the total count of asset requisitions to verify the remaining
+      backlog after the assignment.
+    operationId: countAssetRequisitions
+    parameters:
+    - name: realm
+      in: query
+      value: $inputs.realm
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      remainingCount: $response.body#/count
+  outputs:
+    startingCount: $steps.listRequisitions.outputs.startingCount
+    succeeded: $steps.assignAssetNumber.outputs.succeeded
+    remainingCount: $steps.recountRequisitions.outputs.remainingCount

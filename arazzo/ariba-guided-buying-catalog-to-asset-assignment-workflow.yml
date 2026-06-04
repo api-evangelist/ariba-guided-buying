@@ -1,0 +1,144 @@
+arazzo: 1.0.1
+info:
+  title: Ariba Guided Buying Catalog To Asset Assignment
+  summary: Find a catalog item, locate an in-progress asset requisition, and assign an asset number.
+  description: >-
+    An end-to-end procurement flow that spans both Ariba Guided Buying APIs. It
+    first searches a public catalog shop for an item so the buyer knows what is
+    being procured, then switches to the Asset Management API to find an asset
+    requisition that is In Progress in the Asset Workbench and assigns a unique
+    asset number to its first line item. Assigning unique asset values moves the
+    requisition toward Completed and purchase order creation after approval.
+    Every step spells out its request inline so the flow can be read and executed
+    without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: catalogShopApi
+  url: ../openapi/ariba-guided-buying-catalog-shop-api.yaml
+  type: openapi
+- name: assetManagementApi
+  url: ../openapi/ariba-guided-buying-asset-management-api.yaml
+  type: openapi
+workflows:
+- workflowId: catalog-to-asset-assignment
+  summary: Search the catalog, then assign an asset number to an in-progress asset requisition.
+  description: >-
+    Searches a catalog shop for an item, lists the in-progress asset
+    requisitions, and assigns the supplied unique asset number to the first line
+    item of the first requisition so it can progress toward purchase order
+    creation.
+  inputs:
+    type: object
+    required:
+    - shopID
+    - searchTerm
+    - realm
+    - accessToken
+    - apikey
+    - assetNumber
+    properties:
+      shopID:
+        type: string
+        description: The unique identifier of the shop on SAP Business Network.
+      searchTerm:
+        type: string
+        description: The catalog search term identifying the item being procured.
+      realm:
+        type: string
+        description: The SAP Ariba realm name identifying your site (e.g. mycompany-T).
+      accessToken:
+        type: string
+        description: OAuth 2.0 bearer access token obtained via client credentials.
+      apikey:
+        type: string
+        description: The application key sent in the apikey header for catalog requests.
+      assetNumber:
+        type: string
+        description: The unique asset number to assign to the selected line item.
+  steps:
+  - stepId: searchCatalog
+    description: >-
+      Search the catalog shop for items matching the search term so the procured
+      product is identified before assignment.
+    operationId: listShopItems
+    parameters:
+    - name: shopID
+      in: path
+      value: $inputs.shopID
+    - name: $search
+      in: query
+      value: $inputs.searchTerm
+    - name: $select
+      in: query
+      value: extProductId,price,vendorName
+    - name: apikey
+      in: header
+      value: $inputs.apikey
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      items: $response.body#/items
+      catalogProductId: $response.body#/items/0/extProductId
+  - stepId: listRequisitions
+    description: >-
+      List the asset requisitions that are In Progress in the Asset Workbench to
+      select one for asset number assignment.
+    operationId: listAssetRequisitions
+    parameters:
+    - name: realm
+      in: query
+      value: $inputs.realm
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      requisitionId: $response.body#/requisitions/0/id
+      lineItemId: $response.body#/requisitions/0/lineItems/0/lineItemId
+    onSuccess:
+    - name: hasRequisition
+      type: goto
+      stepId: assignAssetNumber
+      criteria:
+      - context: $response.body
+        condition: $.requisitions.length > 0
+        type: jsonpath
+    - name: noRequisition
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.requisitions.length == 0
+        type: jsonpath
+  - stepId: assignAssetNumber
+    description: >-
+      Assign the supplied unique asset number to the first line item of the
+      selected requisition via a batch update.
+    operationId: updateAssetLineItems
+    parameters:
+    - name: realm
+      in: query
+      value: $inputs.realm
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    requestBody:
+      contentType: application/json
+      payload:
+        updates:
+        - requisitionId: $steps.listRequisitions.outputs.requisitionId
+          lineItemId: $steps.listRequisitions.outputs.lineItemId
+          assetNumber: $inputs.assetNumber
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      succeeded: $response.body#/succeeded
+      failed: $response.body#/failed
+  outputs:
+    catalogProductId: $steps.searchCatalog.outputs.catalogProductId
+    requisitionId: $steps.listRequisitions.outputs.requisitionId
+    succeeded: $steps.assignAssetNumber.outputs.succeeded
+    failed: $steps.assignAssetNumber.outputs.failed

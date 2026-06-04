@@ -1,0 +1,117 @@
+arazzo: 1.0.1
+info:
+  title: Ariba Guided Buying Browse Shop Catalog
+  summary: Open a shop, get a typeahead suggestion, then list the matching catalog items.
+  description: >-
+    A three-step guided shopping flow over the Public Catalogs Shop API. It first
+    opens a shop with its items and facets expanded, then runs a typeahead search
+    with a partial term to obtain a refined suggestion, and finally lists the
+    catalog items matching that suggestion. Together these steps walk a buyer
+    from an empty shop to a concrete set of purchasable items. Every step spells
+    out its request inline so the flow can be read and executed without opening
+    the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: catalogShopApi
+  url: ../openapi/ariba-guided-buying-catalog-shop-api.yaml
+  type: openapi
+workflows:
+- workflowId: browse-shop-catalog
+  summary: Open a shop, resolve a typeahead suggestion, and list the matching catalog items.
+  description: >-
+    Expands a shop's items and facets, runs an autocomplete on a partial term to
+    pick the top suggestion, and lists the catalog items that match that
+    suggestion.
+  inputs:
+    type: object
+    required:
+    - shopID
+    - partialTerm
+    - accessToken
+    - apikey
+    properties:
+      shopID:
+        type: string
+        description: The unique identifier of the shop on SAP Business Network.
+      partialTerm:
+        type: string
+        description: The partial search term entered by the user (e.g. "lap").
+      accessToken:
+        type: string
+        description: OAuth 2.0 bearer access token obtained via client credentials.
+      apikey:
+        type: string
+        description: The application key sent in the apikey header.
+  steps:
+  - stepId: openShop
+    description: >-
+      Open the shop with its catalog items and facets expanded to establish the
+      browsing context.
+    operationId: getShop
+    parameters:
+    - name: shopID
+      in: path
+      value: $inputs.shopID
+    - name: $expand
+      in: query
+      value: Items,Facets
+    - name: apikey
+      in: header
+      value: $inputs.apikey
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      shopID: $response.body#/shopID
+      facets: $response.body#/facets
+  - stepId: suggest
+    description: >-
+      Run a typeahead search with the partial term and capture the top
+      suggestion returned by the shop.
+    operationId: getShopAutoComplete
+    parameters:
+    - name: shopID
+      in: path
+      value: $steps.openShop.outputs.shopID
+    - name: $search
+      in: query
+      value: $inputs.partialTerm
+    - name: apikey
+      in: header
+      value: $inputs.apikey
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      topSuggestion: $response.body#/suggestions/0
+  - stepId: listItems
+    description: >-
+      List the catalog items that match the resolved top suggestion in the shop.
+    operationId: listShopItems
+    parameters:
+    - name: shopID
+      in: path
+      value: $steps.openShop.outputs.shopID
+    - name: $search
+      in: query
+      value: $steps.suggest.outputs.topSuggestion
+    - name: apikey
+      in: header
+      value: $inputs.apikey
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      items: $response.body#/items
+      firstProductId: $response.body#/items/0/extProductId
+  outputs:
+    facets: $steps.openShop.outputs.facets
+    topSuggestion: $steps.suggest.outputs.topSuggestion
+    items: $steps.listItems.outputs.items
+    firstProductId: $steps.listItems.outputs.firstProductId

@@ -84,6 +84,30 @@ apis:
   - type: NaftikoCapability
     url: capabilities/asset-management-requisitions.yaml
 common:
+- type: ArazzoWorkflows
+  url: arazzo/
+  workflows:
+  - url: arazzo/ariba-guided-buying-assign-asset-numbers-workflow.yml
+    name: Ariba Guided Buying Assign Asset Numbers
+    summary: Find an in-progress asset requisition and assign a unique asset number to its line item.
+  - url: arazzo/ariba-guided-buying-browse-shop-catalog-workflow.yml
+    name: Ariba Guided Buying Browse Shop Catalog
+    summary: Open a shop, get a typeahead suggestion, then list the matching catalog items.
+  - url: arazzo/ariba-guided-buying-catalog-to-asset-assignment-workflow.yml
+    name: Ariba Guided Buying Catalog To Asset Assignment
+    summary: Find a catalog item, locate an in-progress asset requisition, and assign an asset number.
+  - url: arazzo/ariba-guided-buying-complete-and-verify-requisitions-workflow.yml
+    name: Ariba Guided Buying Complete And Verify Requisitions
+    summary: Assign an asset number to an in-progress requisition, then re-count the remaining backlog.
+  - url: arazzo/ariba-guided-buying-inventory-asset-requisitions-workflow.yml
+    name: Ariba Guided Buying Inventory Asset Requisitions
+    summary: Count then page through the in-progress asset requisitions in the Asset Workbench.
+  - url: arazzo/ariba-guided-buying-search-shop-with-facets-workflow.yml
+    name: Ariba Guided Buying Search Shop With Facets
+    summary: Search a shop with items and facets expanded, then refine the item list by a search term.
+  - url: arazzo/ariba-guided-buying-typeahead-catalog-search-workflow.yml
+    name: Ariba Guided Buying Typeahead Catalog Search
+    summary: Turn a partial search term into a suggestion, then list matching catalog items.
 - type: Website
   url: https://www.sap.com/products/spend-management/guided-buying.html
 - type: Documentation

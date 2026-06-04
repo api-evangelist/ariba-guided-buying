@@ -1,0 +1,104 @@
+arazzo: 1.0.1
+info:
+  title: Ariba Guided Buying Assign Asset Numbers
+  summary: Find an in-progress asset requisition and assign a unique asset number to its line item.
+  description: >-
+    The core Asset Management flow. It lists the asset requisitions that are
+    waiting In Progress in the Asset Workbench, picks the first one and its first
+    asset line item, then submits a batch update that assigns a unique asset
+    number to that line item. Once every asset item on a requisition has a unique
+    asset value the requisition moves to the Completed tab and a purchase order
+    is created after full approval. Every step spells out its request inline so
+    the flow can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: assetManagementApi
+  url: ../openapi/ariba-guided-buying-asset-management-api.yaml
+  type: openapi
+workflows:
+- workflowId: assign-asset-numbers
+  summary: Locate an in-progress asset requisition line item and assign it a unique asset number.
+  description: >-
+    Lists in-progress asset requisitions, captures the first requisition and its
+    first asset line item, and submits a batch asset update assigning the
+    supplied unique asset number so the requisition can progress toward purchase
+    order creation.
+  inputs:
+    type: object
+    required:
+    - realm
+    - accessToken
+    - assetNumber
+    properties:
+      realm:
+        type: string
+        description: The SAP Ariba realm name identifying your site (e.g. mycompany-T).
+      accessToken:
+        type: string
+        description: OAuth 2.0 bearer access token obtained via client credentials.
+      assetNumber:
+        type: string
+        description: The unique asset number to assign to the selected line item.
+  steps:
+  - stepId: listRequisitions
+    description: >-
+      Retrieve the asset requisitions that are In Progress in the Asset
+      Workbench so a requisition and line item can be selected for assignment.
+    operationId: listAssetRequisitions
+    parameters:
+    - name: realm
+      in: query
+      value: $inputs.realm
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      requisitionId: $response.body#/requisitions/0/id
+      lineItemId: $response.body#/requisitions/0/lineItems/0/lineItemId
+    onSuccess:
+    - name: hasRequisition
+      type: goto
+      stepId: assignAssetNumber
+      criteria:
+      - context: $response.body
+        condition: $.requisitions.length > 0
+        type: jsonpath
+    - name: noRequisition
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.requisitions.length == 0
+        type: jsonpath
+  - stepId: assignAssetNumber
+    description: >-
+      Submit a batch update that assigns the supplied unique asset number to the
+      selected requisition line item.
+    operationId: updateAssetLineItems
+    parameters:
+    - name: realm
+      in: query
+      value: $inputs.realm
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    requestBody:
+      contentType: application/json
+      payload:
+        updates:
+        - requisitionId: $steps.listRequisitions.outputs.requisitionId
+          lineItemId: $steps.listRequisitions.outputs.lineItemId
+          assetNumber: $inputs.assetNumber
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      processed: $response.body#/processed
+      succeeded: $response.body#/succeeded
+      failed: $response.body#/failed
+  outputs:
+    requisitionId: $steps.listRequisitions.outputs.requisitionId
+    lineItemId: $steps.listRequisitions.outputs.lineItemId
+    succeeded: $steps.assignAssetNumber.outputs.succeeded
+    failed: $steps.assignAssetNumber.outputs.failed

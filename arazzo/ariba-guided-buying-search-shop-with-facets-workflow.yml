@@ -1,0 +1,102 @@
+arazzo: 1.0.1
+info:
+  title: Ariba Guided Buying Search Shop With Facets
+  summary: Search a shop with items and facets expanded, then refine the item list by a search term.
+  description: >-
+    A faceted browsing flow over the Public Catalogs Shop API. It retrieves a
+    shop with both items and facets expanded so the caller can see the available
+    filter dimensions returned from SAP Business Network, then issues a focused
+    item listing using a search term to narrow the results. Every step spells out
+    its request inline so the flow can be read and executed without opening the
+    underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: catalogShopApi
+  url: ../openapi/ariba-guided-buying-catalog-shop-api.yaml
+  type: openapi
+workflows:
+- workflowId: search-shop-with-facets
+  summary: Expand a shop's items and facets, then refine the catalog items by a search term.
+  description: >-
+    Reads a shop with Items and Facets expanded to discover the facet
+    dimensions, then lists the catalog items filtered by the supplied search
+    term to produce a refined result set.
+  inputs:
+    type: object
+    required:
+    - shopID
+    - searchTerm
+    - accessToken
+    - apikey
+    properties:
+      shopID:
+        type: string
+        description: The unique identifier of the shop on SAP Business Network.
+      searchTerm:
+        type: string
+        description: The search term used to filter catalog items (e.g. "laptop").
+      accessToken:
+        type: string
+        description: OAuth 2.0 bearer access token obtained via client credentials.
+      apikey:
+        type: string
+        description: The application key sent in the apikey header.
+  steps:
+  - stepId: getShopWithFacets
+    description: >-
+      Retrieve the shop with its catalog items and filter facets expanded so the
+      available facet dimensions and values are visible.
+    operationId: getShop
+    parameters:
+    - name: shopID
+      in: path
+      value: $inputs.shopID
+    - name: $expand
+      in: query
+      value: Items,Facets
+    - name: $search
+      in: query
+      value: $inputs.searchTerm
+    - name: apikey
+      in: header
+      value: $inputs.apikey
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      items: $response.body#/items
+      facets: $response.body#/facets
+      topFacetName: $response.body#/facets/0/name
+  - stepId: refineItems
+    description: >-
+      List the catalog items filtered by the search term, returning a focused
+      set of product, price and vendor fields.
+    operationId: listShopItems
+    parameters:
+    - name: shopID
+      in: path
+      value: $inputs.shopID
+    - name: $search
+      in: query
+      value: $inputs.searchTerm
+    - name: $select
+      in: query
+      value: extProductId,price,vendor,vendorName
+    - name: apikey
+      in: header
+      value: $inputs.apikey
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      items: $response.body#/items
+      firstProductId: $response.body#/items/0/extProductId
+  outputs:
+    facets: $steps.getShopWithFacets.outputs.facets
+    topFacetName: $steps.getShopWithFacets.outputs.topFacetName
+    refinedItems: $steps.refineItems.outputs.items
+    firstProductId: $steps.refineItems.outputs.firstProductId

@@ -1,0 +1,84 @@
+arazzo: 1.0.1
+info:
+  title: Ariba Guided Buying Inventory Asset Requisitions
+  summary: Count then page through the in-progress asset requisitions in the Asset Workbench.
+  description: >-
+    A reporting flow over the SAP Ariba Asset Management API. It first reads the
+    total number of asset-based requisitions waiting in the In Progress state of
+    the Asset Workbench, then retrieves a page of those requisitions and their
+    asset line items so the caller can see exactly what is awaiting asset number
+    assignment. Every step spells out its request inline so the flow can be read
+    and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: assetManagementApi
+  url: ../openapi/ariba-guided-buying-asset-management-api.yaml
+  type: openapi
+workflows:
+- workflowId: inventory-asset-requisitions
+  summary: Count and list the asset requisitions currently in progress.
+  description: >-
+    Calls the count endpoint to learn how many asset requisitions exist, then
+    lists a page of them so each requisition and its asset line items can be
+    inspected before asset numbers are assigned.
+  inputs:
+    type: object
+    required:
+    - realm
+    - accessToken
+    properties:
+      realm:
+        type: string
+        description: The SAP Ariba realm name identifying your site (e.g. mycompany-T).
+      accessToken:
+        type: string
+        description: OAuth 2.0 bearer access token obtained via client credentials.
+      skip:
+        type: integer
+        description: Number of records to skip for pagination.
+        default: 0
+  steps:
+  - stepId: countRequisitions
+    description: >-
+      Read the total count of asset requisitions in the buying solution for the
+      given realm.
+    operationId: countAssetRequisitions
+    parameters:
+    - name: realm
+      in: query
+      value: $inputs.realm
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      total: $response.body#/count
+  - stepId: listRequisitions
+    description: >-
+      Retrieve a page of asset requisitions that are in the In Progress state in
+      the Asset Workbench, including their asset line items.
+    operationId: listAssetRequisitions
+    parameters:
+    - name: realm
+      in: query
+      value: $inputs.realm
+    - name: $count
+      in: query
+      value: true
+    - name: $skip
+      in: query
+      value: $inputs.skip
+    - name: Authorization
+      in: header
+      value: "Bearer $inputs.accessToken"
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      count: $response.body#/count
+      requisitions: $response.body#/requisitions
+      firstRequisitionId: $response.body#/requisitions/0/id
+  outputs:
+    total: $steps.countRequisitions.outputs.total
+    requisitions: $steps.listRequisitions.outputs.requisitions
+    firstRequisitionId: $steps.listRequisitions.outputs.firstRequisitionId
