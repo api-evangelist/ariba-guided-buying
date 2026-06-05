@@ -84,6 +84,8 @@ apis:
   - type: NaftikoCapability
     url: capabilities/asset-management-requisitions.yaml
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/ariba-guided-buying/overview
 - type: ArazzoWorkflows
   url: arazzo/
   workflows:
