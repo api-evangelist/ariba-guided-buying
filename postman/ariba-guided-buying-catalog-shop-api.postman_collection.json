@@ -1,0 +1,669 @@
+{
+  "info": {
+    "_postman_id": "00bcb8ce-30f8-440b-b612-6da00370abf6",
+    "name": "Ariba Guided Buying - Public Catalogs Shop API",
+    "description": "The Public Catalogs Shop API enables applications to retrieve data related to catalog items, filter facets, and matching search suggestions from public catalogs on SAP Business Network. This API is supported for use within SAP Ariba Buying, base edition, which is integrated with SAP S/4HANA Cloud Public Edition.\n\nContact Support:\n Name: SAP Ariba Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:05:27.000Z",
+    "updatedAt": "2026-06-05T15:05:28.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-00bcb8ce-30f8-440b-b612-6da00370abf6"
+  },
+  "item": [
+    {
+      "name": "Shops({shopID})",
+      "item": [
+        {
+          "name": "Items",
+          "item": [
+            {
+              "name": "Ariba Guided Buying List Shop Catalog Items",
+              "id": "cd280610-228c-4c45-97bd-7e3f2e3fe5db",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/Shops({{shopID}})/Items?$search=<string>&$select=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "Shops({{shopID}})",
+                    "Items"
+                  ],
+                  "query": [
+                    {
+                      "description": "Search terms entered by the user.",
+                      "key": "$search",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Comma-separated list of fields to return. Supported values: extProductId, leadTime, manufactCode, manufactName, price, vendor, vendorName, vendorPartId.",
+                      "key": "$select",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Returns the list of all the catalog items and their details from public catalogs on SAP Business Network. Use $search to filter by search term and $select to choose which fields are returned."
+              },
+              "response": [
+                {
+                  "id": "232cc373-3cad-41d1-a134-f7bc7a57402f",
+                  "name": "Successfully retrieved list of catalog items.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/Shops({{shopID}})/Items?$search=<string>&$select=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "Shops({{shopID}})",
+                        "Items"
+                      ],
+                      "query": [
+                        {
+                          "description": "Search terms entered by the user.",
+                          "key": "$search",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Comma-separated list of fields to return. Supported values: extProductId, leadTime, manufactCode, manufactName, price, vendor, vendorName, vendorPartId.",
+                          "key": "$select",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"items\": [\n    {\n      \"extProductId\": \"<string>\",\n      \"leadTime\": \"<integer>\",\n      \"manufactCode\": \"<string>\",\n      \"manufactName\": \"<string>\",\n      \"price\": \"<number>\",\n      \"vendor\": \"<string>\",\n      \"vendorName\": \"<string>\",\n      \"vendorPartId\": \"<string>\"\n    },\n    {\n      \"extProductId\": \"<string>\",\n      \"leadTime\": \"<integer>\",\n      \"manufactCode\": \"<string>\",\n      \"manufactName\": \"<string>\",\n      \"price\": \"<number>\",\n      \"vendor\": \"<string>\",\n      \"vendorName\": \"<string>\",\n      \"vendorPartId\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-06-05T15:05:28.000Z",
+                  "updatedAt": "2026-06-05T15:05:28.000Z",
+                  "uid": "35240-232cc373-3cad-41d1-a134-f7bc7a57402f"
+                },
+                {
+                  "id": "5638e424-bbd7-4ad7-8e3f-bb8b677ad9b9",
+                  "name": "Bad Request - invalid fields in request.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/Shops({{shopID}})/Items?$search=<string>&$select=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "Shops({{shopID}})",
+                        "Items"
+                      ],
+                      "query": [
+                        {
+                          "description": "Search terms entered by the user.",
+                          "key": "$search",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Comma-separated list of fields to return. Supported values: extProductId, leadTime, manufactCode, manufactName, price, vendor, vendorName, vendorPartId.",
+                          "key": "$select",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T15:05:28.000Z",
+                  "updatedAt": "2026-06-05T15:05:28.000Z",
+                  "uid": "35240-5638e424-bbd7-4ad7-8e3f-bb8b677ad9b9"
+                },
+                {
+                  "id": "460de22f-6d71-4539-a281-c740f4e6473a",
+                  "name": "Internal Server Error.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/Shops({{shopID}})/Items?$search=<string>&$select=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "Shops({{shopID}})",
+                        "Items"
+                      ],
+                      "query": [
+                        {
+                          "description": "Search terms entered by the user.",
+                          "key": "$search",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Comma-separated list of fields to return. Supported values: extProductId, leadTime, manufactCode, manufactName, price, vendor, vendorName, vendorPartId.",
+                          "key": "$select",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T15:05:28.000Z",
+                  "updatedAt": "2026-06-05T15:05:28.000Z",
+                  "uid": "35240-460de22f-6d71-4539-a281-c740f4e6473a"
+                }
+              ],
+              "createdAt": "2026-06-05T15:05:28.000Z",
+              "updatedAt": "2026-06-05T15:05:28.000Z",
+              "uid": "35240-cd280610-228c-4c45-97bd-7e3f2e3fe5db"
+            }
+          ],
+          "id": "d41a2e31-9e7f-4c0b-b3ae-a949fa7ada18",
+          "createdAt": "2026-06-05T15:05:28.000Z",
+          "updatedAt": "2026-06-05T15:05:28.000Z",
+          "uid": "35240-d41a2e31-9e7f-4c0b-b3ae-a949fa7ada18"
+        },
+        {
+          "name": "AutoComplete",
+          "item": [
+            {
+              "name": "Ariba Guided Buying Get Catalog Search Suggestions",
+              "id": "03a01841-a61c-4690-983d-9f694084b1d7",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/Shops({{shopID}})/AutoComplete?$search=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "Shops({{shopID}})",
+                    "AutoComplete"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The partial search term entered by the user for typeahead suggestions.",
+                      "key": "$search",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Initiates the typeahead search feature and retrieves the list of matching search suggestions from public catalogs on SAP Business Network."
+              },
+              "response": [
+                {
+                  "id": "bab23424-fcbe-4723-8556-808724ce6d36",
+                  "name": "Successfully retrieved list of matching search suggestions.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/Shops({{shopID}})/AutoComplete?$search=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "Shops({{shopID}})",
+                        "AutoComplete"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) The partial search term entered by the user for typeahead suggestions.",
+                          "key": "$search",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"suggestions\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "createdAt": "2026-06-05T15:05:28.000Z",
+                  "updatedAt": "2026-06-05T15:05:28.000Z",
+                  "uid": "35240-bab23424-fcbe-4723-8556-808724ce6d36"
+                },
+                {
+                  "id": "479c2e1b-da32-4d72-885e-57b4d4964882",
+                  "name": "Bad Request - invalid fields in request.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/Shops({{shopID}})/AutoComplete?$search=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "Shops({{shopID}})",
+                        "AutoComplete"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) The partial search term entered by the user for typeahead suggestions.",
+                          "key": "$search",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T15:05:28.000Z",
+                  "updatedAt": "2026-06-05T15:05:28.000Z",
+                  "uid": "35240-479c2e1b-da32-4d72-885e-57b4d4964882"
+                },
+                {
+                  "id": "33be90cf-0c76-4cfe-a194-44e77fb2f882",
+                  "name": "Internal Server Error.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/Shops({{shopID}})/AutoComplete?$search=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "Shops({{shopID}})",
+                        "AutoComplete"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) The partial search term entered by the user for typeahead suggestions.",
+                          "key": "$search",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T15:05:28.000Z",
+                  "updatedAt": "2026-06-05T15:05:28.000Z",
+                  "uid": "35240-33be90cf-0c76-4cfe-a194-44e77fb2f882"
+                }
+              ],
+              "createdAt": "2026-06-05T15:05:28.000Z",
+              "updatedAt": "2026-06-05T15:05:28.000Z",
+              "uid": "35240-03a01841-a61c-4690-983d-9f694084b1d7"
+            }
+          ],
+          "id": "c47eee6d-d598-4546-8ad9-207edb7440c8",
+          "createdAt": "2026-06-05T15:05:28.000Z",
+          "updatedAt": "2026-06-05T15:05:28.000Z",
+          "uid": "35240-c47eee6d-d598-4546-8ad9-207edb7440c8"
+        },
+        {
+          "name": "Ariba Guided Buying Get Shop Catalog Items and Facets",
+          "id": "b92b7da4-0dd8-4ecb-ab35-034d20a1d08a",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/Shops({{shopID}})?$expand=<string>&$search=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "Shops({{shopID}})"
+              ],
+              "query": [
+                {
+                  "description": "Expand related entities. Supported values: Items, Facets. Use $expand=Items,Facets to include both.",
+                  "key": "$expand",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Search term to filter catalog items.",
+                  "key": "$search",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Retrieves the details of all the catalog items and facets from public catalogs from suppliers on SAP Business Network. Use the $expand parameter to include items and facets in the response."
+          },
+          "response": [
+            {
+              "id": "fa704177-dea9-4ced-aac3-d1af4cca619c",
+              "name": "Successfully retrieved catalog items and facets.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/Shops({{shopID}})?$expand=<string>&$search=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "Shops({{shopID}})"
+                  ],
+                  "query": [
+                    {
+                      "description": "Expand related entities. Supported values: Items, Facets. Use $expand=Items,Facets to include both.",
+                      "key": "$expand",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Search term to filter catalog items.",
+                      "key": "$search",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"shopID\": \"<string>\",\n  \"items\": [\n    {\n      \"extProductId\": \"<string>\",\n      \"leadTime\": \"<integer>\",\n      \"manufactCode\": \"<string>\",\n      \"manufactName\": \"<string>\",\n      \"price\": \"<number>\",\n      \"vendor\": \"<string>\",\n      \"vendorName\": \"<string>\",\n      \"vendorPartId\": \"<string>\"\n    },\n    {\n      \"extProductId\": \"<string>\",\n      \"leadTime\": \"<integer>\",\n      \"manufactCode\": \"<string>\",\n      \"manufactName\": \"<string>\",\n      \"price\": \"<number>\",\n      \"vendor\": \"<string>\",\n      \"vendorName\": \"<string>\",\n      \"vendorPartId\": \"<string>\"\n    }\n  ],\n  \"facets\": [\n    {\n      \"name\": \"<string>\",\n      \"values\": [\n        {\n          \"label\": \"<string>\",\n          \"count\": \"<integer>\"\n        },\n        {\n          \"label\": \"<string>\",\n          \"count\": \"<integer>\"\n        }\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"values\": [\n        {\n          \"label\": \"<string>\",\n          \"count\": \"<integer>\"\n        },\n        {\n          \"label\": \"<string>\",\n          \"count\": \"<integer>\"\n        }\n      ]\n    }\n  ]\n}",
+              "createdAt": "2026-06-05T15:05:28.000Z",
+              "updatedAt": "2026-06-05T15:05:28.000Z",
+              "uid": "35240-fa704177-dea9-4ced-aac3-d1af4cca619c"
+            },
+            {
+              "id": "5d490b26-1933-4988-9c36-c1388afb9a36",
+              "name": "Bad Request - invalid fields in request.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/Shops({{shopID}})?$expand=<string>&$search=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "Shops({{shopID}})"
+                  ],
+                  "query": [
+                    {
+                      "description": "Expand related entities. Supported values: Items, Facets. Use $expand=Items,Facets to include both.",
+                      "key": "$expand",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Search term to filter catalog items.",
+                      "key": "$search",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:05:28.000Z",
+              "updatedAt": "2026-06-05T15:05:28.000Z",
+              "uid": "35240-5d490b26-1933-4988-9c36-c1388afb9a36"
+            },
+            {
+              "id": "aae9ade7-2d5c-4a08-89bf-bf213b711e6b",
+              "name": "Internal Server Error.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/Shops({{shopID}})?$expand=<string>&$search=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "Shops({{shopID}})"
+                  ],
+                  "query": [
+                    {
+                      "description": "Expand related entities. Supported values: Items, Facets. Use $expand=Items,Facets to include both.",
+                      "key": "$expand",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Search term to filter catalog items.",
+                      "key": "$search",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:05:28.000Z",
+              "updatedAt": "2026-06-05T15:05:28.000Z",
+              "uid": "35240-aae9ade7-2d5c-4a08-89bf-bf213b711e6b"
+            }
+          ],
+          "createdAt": "2026-06-05T15:05:28.000Z",
+          "updatedAt": "2026-06-05T15:05:28.000Z",
+          "uid": "35240-b92b7da4-0dd8-4ecb-ab35-034d20a1d08a"
+        }
+      ],
+      "id": "7eead49e-5f59-4738-b751-6db671a7288c",
+      "createdAt": "2026-06-05T15:05:28.000Z",
+      "updatedAt": "2026-06-05T15:05:28.000Z",
+      "uid": "35240-7eead49e-5f59-4738-b751-6db671a7288c"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://api.ariba.com/v2/oauth/token",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://openapi.ariba.com/api/catalog-shop/v1/prod"
+    },
+    {
+      "key": "shopID",
+      "value": "<string>"
+    }
+  ]
+}

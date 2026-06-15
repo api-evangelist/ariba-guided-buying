@@ -1,0 +1,1061 @@
+{
+  "info": {
+    "_postman_id": "65565a4d-b825-4662-b8a2-69369cbd48b2",
+    "name": "Ariba Guided Buying - Asset Management API",
+    "description": "The Asset Management API enables developers to construct API queries that import asset records into the SAP Ariba solution and assign unique values to asset line items on requisitions. This API is applicable for SAP ERP-integrated sites that have enabled the asset management feature.\n\nContact Support:\n Name: SAP Ariba Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:05:30.000Z",
+    "updatedAt": "2026-06-05T15:05:30.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-65565a4d-b825-4662-b8a2-69369cbd48b2"
+  },
+  "item": [
+    {
+      "name": "requisitions",
+      "item": [
+        {
+          "name": "$count",
+          "item": [
+            {
+              "name": "Ariba Guided Buying Count Asset Requisitions",
+              "id": "8e6488fe-0736-44a8-a946-37a7a94d85a6",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/requisitions/$count?realm=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "requisitions",
+                    "$count"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The SAP Ariba realm name identifying your site.",
+                      "key": "realm",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Get the total count of requisitions consisting of asset line items in the buying solution."
+              },
+              "response": [
+                {
+                  "id": "605dedc6-f27d-43fb-9e6c-7786c9eced27",
+                  "name": "Successfully retrieved count of asset requisitions.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/requisitions/$count?realm=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "requisitions",
+                        "$count"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) The SAP Ariba realm name identifying your site.",
+                          "key": "realm",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"count\": \"<integer>\"\n}",
+                  "createdAt": "2026-06-05T15:05:31.000Z",
+                  "updatedAt": "2026-06-05T15:05:31.000Z",
+                  "uid": "35240-605dedc6-f27d-43fb-9e6c-7786c9eced27"
+                },
+                {
+                  "id": "4b4b0a71-433f-4269-9689-0564c06a3489",
+                  "name": "Bad Request.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/requisitions/$count?realm=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "requisitions",
+                        "$count"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) The SAP Ariba realm name identifying your site.",
+                          "key": "realm",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T15:05:31.000Z",
+                  "updatedAt": "2026-06-05T15:05:31.000Z",
+                  "uid": "35240-4b4b0a71-433f-4269-9689-0564c06a3489"
+                },
+                {
+                  "id": "dc0b4b22-5d56-4831-b1f3-4dcd617f1508",
+                  "name": "Unauthorized - invalid or missing credentials.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/requisitions/$count?realm=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "requisitions",
+                        "$count"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) The SAP Ariba realm name identifying your site.",
+                          "key": "realm",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T15:05:31.000Z",
+                  "updatedAt": "2026-06-05T15:05:31.000Z",
+                  "uid": "35240-dc0b4b22-5d56-4831-b1f3-4dcd617f1508"
+                },
+                {
+                  "id": "f08439c1-afdc-413d-9ff1-6a1b62502bb7",
+                  "name": "Internal Server Error.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/requisitions/$count?realm=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "requisitions",
+                        "$count"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) The SAP Ariba realm name identifying your site.",
+                          "key": "realm",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T15:05:31.000Z",
+                  "updatedAt": "2026-06-05T15:05:31.000Z",
+                  "uid": "35240-f08439c1-afdc-413d-9ff1-6a1b62502bb7"
+                }
+              ],
+              "createdAt": "2026-06-05T15:05:31.000Z",
+              "updatedAt": "2026-06-05T15:05:31.000Z",
+              "uid": "35240-8e6488fe-0736-44a8-a946-37a7a94d85a6"
+            }
+          ],
+          "id": "218aa281-b582-49ae-8190-855d4e1967aa",
+          "createdAt": "2026-06-05T15:05:31.000Z",
+          "updatedAt": "2026-06-05T15:05:31.000Z",
+          "uid": "35240-218aa281-b582-49ae-8190-855d4e1967aa"
+        },
+        {
+          "name": "batch",
+          "item": [
+            {
+              "name": "assets",
+              "item": [
+                {
+                  "name": "Ariba Guided Buying Update Asset Line Items on Requisitions",
+                  "id": "095997ff-e7e0-4fc7-bdbf-400eec7fabfb",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"updates\": [\n    {\n      \"requisitionId\": \"<string>\",\n      \"lineItemId\": \"<string>\",\n      \"assetNumber\": \"<string>\"\n    },\n    {\n      \"requisitionId\": \"<string>\",\n      \"lineItemId\": \"<string>\",\n      \"assetNumber\": \"<string>\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/requisitions/batch/assets?realm=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "requisitions",
+                        "batch",
+                        "assets"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) The SAP Ariba realm name identifying your site.",
+                          "key": "realm",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "description": "Update the Asset field for asset items on requisitions with unique asset values. The requisitions in which all asset items are assigned with unique asset values move under the Completed tab in the Asset Workbench and purchase orders are created after those requisitions are fully approved. Maximum 20 records per request."
+                  },
+                  "response": [
+                    {
+                      "id": "362bbc57-b215-49c1-acb0-bb3d186bab98",
+                      "name": "Successfully updated asset line items.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"updates\": [\n    {\n      \"requisitionId\": \"<string>\",\n      \"lineItemId\": \"<string>\",\n      \"assetNumber\": \"<string>\"\n    },\n    {\n      \"requisitionId\": \"<string>\",\n      \"lineItemId\": \"<string>\",\n      \"assetNumber\": \"<string>\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/requisitions/batch/assets?realm=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "requisitions",
+                            "batch",
+                            "assets"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) The SAP Ariba realm name identifying your site.",
+                              "key": "realm",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"processed\": \"<integer>\",\n  \"succeeded\": \"<integer>\",\n  \"failed\": \"<integer>\"\n}",
+                      "createdAt": "2026-06-05T15:05:31.000Z",
+                      "updatedAt": "2026-06-05T15:05:31.000Z",
+                      "uid": "35240-362bbc57-b215-49c1-acb0-bb3d186bab98"
+                    },
+                    {
+                      "id": "7ca49012-507e-43d9-9eb4-cb377b90bf92",
+                      "name": "Bad Request.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"updates\": [\n    {\n      \"requisitionId\": \"<string>\",\n      \"lineItemId\": \"<string>\",\n      \"assetNumber\": \"<string>\"\n    },\n    {\n      \"requisitionId\": \"<string>\",\n      \"lineItemId\": \"<string>\",\n      \"assetNumber\": \"<string>\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/requisitions/batch/assets?realm=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "requisitions",
+                            "batch",
+                            "assets"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) The SAP Ariba realm name identifying your site.",
+                              "key": "realm",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:05:31.000Z",
+                      "updatedAt": "2026-06-05T15:05:31.000Z",
+                      "uid": "35240-7ca49012-507e-43d9-9eb4-cb377b90bf92"
+                    },
+                    {
+                      "id": "62d0359e-875d-4051-866a-43313e46be8a",
+                      "name": "Unauthorized - invalid or missing credentials.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"updates\": [\n    {\n      \"requisitionId\": \"<string>\",\n      \"lineItemId\": \"<string>\",\n      \"assetNumber\": \"<string>\"\n    },\n    {\n      \"requisitionId\": \"<string>\",\n      \"lineItemId\": \"<string>\",\n      \"assetNumber\": \"<string>\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/requisitions/batch/assets?realm=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "requisitions",
+                            "batch",
+                            "assets"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) The SAP Ariba realm name identifying your site.",
+                              "key": "realm",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:05:31.000Z",
+                      "updatedAt": "2026-06-05T15:05:31.000Z",
+                      "uid": "35240-62d0359e-875d-4051-866a-43313e46be8a"
+                    },
+                    {
+                      "id": "4e66b6a4-9495-4ffd-8660-478c98121db3",
+                      "name": "Internal Server Error.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"updates\": [\n    {\n      \"requisitionId\": \"<string>\",\n      \"lineItemId\": \"<string>\",\n      \"assetNumber\": \"<string>\"\n    },\n    {\n      \"requisitionId\": \"<string>\",\n      \"lineItemId\": \"<string>\",\n      \"assetNumber\": \"<string>\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/requisitions/batch/assets?realm=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "requisitions",
+                            "batch",
+                            "assets"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) The SAP Ariba realm name identifying your site.",
+                              "key": "realm",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:05:31.000Z",
+                      "updatedAt": "2026-06-05T15:05:31.000Z",
+                      "uid": "35240-4e66b6a4-9495-4ffd-8660-478c98121db3"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:05:31.000Z",
+                  "updatedAt": "2026-06-05T15:05:31.000Z",
+                  "uid": "35240-095997ff-e7e0-4fc7-bdbf-400eec7fabfb"
+                }
+              ],
+              "id": "42b9a095-7f23-46f9-83ca-17e3b8f4c3a0",
+              "createdAt": "2026-06-05T15:05:31.000Z",
+              "updatedAt": "2026-06-05T15:05:31.000Z",
+              "uid": "35240-42b9a095-7f23-46f9-83ca-17e3b8f4c3a0"
+            }
+          ],
+          "id": "9d5cc260-3f29-493a-9576-745e89604fc1",
+          "createdAt": "2026-06-05T15:05:31.000Z",
+          "updatedAt": "2026-06-05T15:05:31.000Z",
+          "uid": "35240-9d5cc260-3f29-493a-9576-745e89604fc1"
+        },
+        {
+          "name": "Ariba Guided Buying List Asset Requisitions",
+          "id": "af595bcf-dcf4-4fc3-a136-e4797162903b",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/requisitions?realm=<string>&$filter=<string>&$count=<boolean>&$skip=<integer>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "requisitions"
+              ],
+              "query": [
+                {
+                  "description": "(Required) The SAP Ariba realm name identifying your site.",
+                  "key": "realm",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter asset-based requisitions by attributes. Example: {TimeCreated eq 2018-09-26T09:00:00Z;TimeUpdated eq 2018-09-27T09:00:00Z}",
+                  "key": "$filter",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Include total count in response when set to true.",
+                  "key": "$count",
+                  "value": "<boolean>"
+                },
+                {
+                  "description": "Number of records to skip for pagination.",
+                  "key": "$skip",
+                  "value": "<integer>"
+                }
+              ]
+            },
+            "description": "Get requisitions consisting of asset line items that are in the In Progress state in the Asset Workbench in the buying solution. Requisitions move to this state after asset managers finish their approval."
+          },
+          "response": [
+            {
+              "id": "44d7fa2e-aca8-4b18-b6cd-b40acc09be3c",
+              "name": "Successfully retrieved asset requisitions.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/requisitions?realm=<string>&$filter=<string>&$count=<boolean>&$skip=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "requisitions"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The SAP Ariba realm name identifying your site.",
+                      "key": "realm",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter asset-based requisitions by attributes. Example: {TimeCreated eq 2018-09-26T09:00:00Z;TimeUpdated eq 2018-09-27T09:00:00Z}",
+                      "key": "$filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Include total count in response when set to true.",
+                      "key": "$count",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "description": "Number of records to skip for pagination.",
+                      "key": "$skip",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"count\": \"<integer>\",\n  \"requisitions\": [\n    {\n      \"id\": \"<string>\",\n      \"title\": \"<string>\",\n      \"status\": \"Completed\",\n      \"createdDate\": \"<dateTime>\",\n      \"updatedDate\": \"<dateTime>\",\n      \"lineItems\": [\n        {\n          \"lineItemId\": \"<string>\",\n          \"description\": \"<string>\",\n          \"assetCategory\": \"<string>\",\n          \"quantity\": \"<integer>\",\n          \"assetNumber\": \"<string>\"\n        },\n        {\n          \"lineItemId\": \"<string>\",\n          \"description\": \"<string>\",\n          \"assetCategory\": \"<string>\",\n          \"quantity\": \"<integer>\",\n          \"assetNumber\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"title\": \"<string>\",\n      \"status\": \"Approved\",\n      \"createdDate\": \"<dateTime>\",\n      \"updatedDate\": \"<dateTime>\",\n      \"lineItems\": [\n        {\n          \"lineItemId\": \"<string>\",\n          \"description\": \"<string>\",\n          \"assetCategory\": \"<string>\",\n          \"quantity\": \"<integer>\",\n          \"assetNumber\": \"<string>\"\n        },\n        {\n          \"lineItemId\": \"<string>\",\n          \"description\": \"<string>\",\n          \"assetCategory\": \"<string>\",\n          \"quantity\": \"<integer>\",\n          \"assetNumber\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+              "createdAt": "2026-06-05T15:05:31.000Z",
+              "updatedAt": "2026-06-05T15:05:31.000Z",
+              "uid": "35240-44d7fa2e-aca8-4b18-b6cd-b40acc09be3c"
+            },
+            {
+              "id": "47138a72-4cd5-4a7c-960c-013c111dc1d3",
+              "name": "Bad Request.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/requisitions?realm=<string>&$filter=<string>&$count=<boolean>&$skip=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "requisitions"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The SAP Ariba realm name identifying your site.",
+                      "key": "realm",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter asset-based requisitions by attributes. Example: {TimeCreated eq 2018-09-26T09:00:00Z;TimeUpdated eq 2018-09-27T09:00:00Z}",
+                      "key": "$filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Include total count in response when set to true.",
+                      "key": "$count",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "description": "Number of records to skip for pagination.",
+                      "key": "$skip",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:05:31.000Z",
+              "updatedAt": "2026-06-05T15:05:31.000Z",
+              "uid": "35240-47138a72-4cd5-4a7c-960c-013c111dc1d3"
+            },
+            {
+              "id": "657aa6f9-6ae8-41e7-9a64-20b8d8b49da5",
+              "name": "Unauthorized - invalid or missing credentials.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/requisitions?realm=<string>&$filter=<string>&$count=<boolean>&$skip=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "requisitions"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The SAP Ariba realm name identifying your site.",
+                      "key": "realm",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter asset-based requisitions by attributes. Example: {TimeCreated eq 2018-09-26T09:00:00Z;TimeUpdated eq 2018-09-27T09:00:00Z}",
+                      "key": "$filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Include total count in response when set to true.",
+                      "key": "$count",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "description": "Number of records to skip for pagination.",
+                      "key": "$skip",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:05:31.000Z",
+              "updatedAt": "2026-06-05T15:05:31.000Z",
+              "uid": "35240-657aa6f9-6ae8-41e7-9a64-20b8d8b49da5"
+            },
+            {
+              "id": "d0b3c128-c2f4-4d38-a08a-5f8e0af29381",
+              "name": "Forbidden - insufficient permissions.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/requisitions?realm=<string>&$filter=<string>&$count=<boolean>&$skip=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "requisitions"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The SAP Ariba realm name identifying your site.",
+                      "key": "realm",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter asset-based requisitions by attributes. Example: {TimeCreated eq 2018-09-26T09:00:00Z;TimeUpdated eq 2018-09-27T09:00:00Z}",
+                      "key": "$filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Include total count in response when set to true.",
+                      "key": "$count",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "description": "Number of records to skip for pagination.",
+                      "key": "$skip",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:05:31.000Z",
+              "updatedAt": "2026-06-05T15:05:31.000Z",
+              "uid": "35240-d0b3c128-c2f4-4d38-a08a-5f8e0af29381"
+            },
+            {
+              "id": "179398e8-a03e-4cae-9b15-7237d4537a30",
+              "name": "Internal Server Error.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/requisitions?realm=<string>&$filter=<string>&$count=<boolean>&$skip=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "requisitions"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The SAP Ariba realm name identifying your site.",
+                      "key": "realm",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter asset-based requisitions by attributes. Example: {TimeCreated eq 2018-09-26T09:00:00Z;TimeUpdated eq 2018-09-27T09:00:00Z}",
+                      "key": "$filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Include total count in response when set to true.",
+                      "key": "$count",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "description": "Number of records to skip for pagination.",
+                      "key": "$skip",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:05:31.000Z",
+              "updatedAt": "2026-06-05T15:05:31.000Z",
+              "uid": "35240-179398e8-a03e-4cae-9b15-7237d4537a30"
+            },
+            {
+              "id": "baba392a-e600-4a07-9fd8-585efa2305ad",
+              "name": "Gateway Timeout.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/requisitions?realm=<string>&$filter=<string>&$count=<boolean>&$skip=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "requisitions"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The SAP Ariba realm name identifying your site.",
+                      "key": "realm",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter asset-based requisitions by attributes. Example: {TimeCreated eq 2018-09-26T09:00:00Z;TimeUpdated eq 2018-09-27T09:00:00Z}",
+                      "key": "$filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Include total count in response when set to true.",
+                      "key": "$count",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "description": "Number of records to skip for pagination.",
+                      "key": "$skip",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "Gateway Timeout",
+              "code": 504,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:05:31.000Z",
+              "updatedAt": "2026-06-05T15:05:31.000Z",
+              "uid": "35240-baba392a-e600-4a07-9fd8-585efa2305ad"
+            }
+          ],
+          "createdAt": "2026-06-05T15:05:31.000Z",
+          "updatedAt": "2026-06-05T15:05:31.000Z",
+          "uid": "35240-af595bcf-dcf4-4fc3-a136-e4797162903b"
+        }
+      ],
+      "id": "aae71960-1d57-4c63-b224-8c5d974a6c5e",
+      "createdAt": "2026-06-05T15:05:31.000Z",
+      "updatedAt": "2026-06-05T15:05:31.000Z",
+      "uid": "35240-aae71960-1d57-4c63-b224-8c5d974a6c5e"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://api.ariba.com/v2/oauth/token",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://openapi.ariba.com/api/asset-management/v1/prod"
+    }
+  ]
+}
