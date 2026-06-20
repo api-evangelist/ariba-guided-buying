@@ -4,7 +4,7 @@ description: SAP Ariba Guided Buying provides a consumer-like shopping experienc
   to find and purchase goods and services through an intuitive catalog-driven interface with built-in approval workflows and
   policy compliance.
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
 - B2B
 - Catalog
