@@ -50,7 +50,7 @@ apis:
     url: json-structure/catalog-shop-api-catalog-item-structure.json
   - type: JSONLD
     url: json-ld/ariba-guided-buying-catalog-shop-api-context.jsonld
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/catalog-shop-shops.yaml
 - aid: ariba-guided-buying:ariba-guided-buying-asset-management-api
   name: Ariba Guided Buying - Asset Management API
@@ -81,99 +81,96 @@ apis:
     url: json-structure/asset-management-api-asset-line-item-structure.json
   - type: JSONLD
     url: json-ld/ariba-guided-buying-asset-management-api-context.jsonld
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/asset-management-requisitions.yaml
 common:
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/ariba-guided-buying/overview
-- type: ArazzoWorkflows
-  url: arazzo/
-  workflows:
-  - url: arazzo/ariba-guided-buying-assign-asset-numbers-workflow.yml
+  - type: Arazzo
+    url: arazzo/ariba-guided-buying-assign-asset-numbers-workflow.yml
     name: Ariba Guided Buying Assign Asset Numbers
-    summary: Find an in-progress asset requisition and assign a unique asset number to its line item.
-  - url: arazzo/ariba-guided-buying-browse-shop-catalog-workflow.yml
+  - type: Arazzo
+    url: arazzo/ariba-guided-buying-browse-shop-catalog-workflow.yml
     name: Ariba Guided Buying Browse Shop Catalog
-    summary: Open a shop, get a typeahead suggestion, then list the matching catalog items.
-  - url: arazzo/ariba-guided-buying-catalog-to-asset-assignment-workflow.yml
+  - type: Arazzo
+    url: arazzo/ariba-guided-buying-catalog-to-asset-assignment-workflow.yml
     name: Ariba Guided Buying Catalog To Asset Assignment
-    summary: Find a catalog item, locate an in-progress asset requisition, and assign an asset number.
-  - url: arazzo/ariba-guided-buying-complete-and-verify-requisitions-workflow.yml
+  - type: Arazzo
+    url: arazzo/ariba-guided-buying-complete-and-verify-requisitions-workflow.yml
     name: Ariba Guided Buying Complete And Verify Requisitions
-    summary: Assign an asset number to an in-progress requisition, then re-count the remaining backlog.
-  - url: arazzo/ariba-guided-buying-inventory-asset-requisitions-workflow.yml
+  - type: Arazzo
+    url: arazzo/ariba-guided-buying-inventory-asset-requisitions-workflow.yml
     name: Ariba Guided Buying Inventory Asset Requisitions
-    summary: Count then page through the in-progress asset requisitions in the Asset Workbench.
-  - url: arazzo/ariba-guided-buying-search-shop-with-facets-workflow.yml
+  - type: Arazzo
+    url: arazzo/ariba-guided-buying-search-shop-with-facets-workflow.yml
     name: Ariba Guided Buying Search Shop With Facets
-    summary: Search a shop with items and facets expanded, then refine the item list by a search term.
-  - url: arazzo/ariba-guided-buying-typeahead-catalog-search-workflow.yml
+  - type: Arazzo
+    url: arazzo/ariba-guided-buying-typeahead-catalog-search-workflow.yml
     name: Ariba Guided Buying Typeahead Catalog Search
-    summary: Turn a partial search term into a suggestion, then list matching catalog items.
-- type: Website
-  url: https://www.sap.com/products/spend-management/guided-buying.html
-- type: Documentation
-  url: https://help.sap.com/docs/ariba-apis
-- type: GettingStarted
-  url: https://help.sap.com/docs/ariba-apis/help-for-sap-ariba-developer-portal/sap-ariba-developer-portal-quick-start-guide-for-developers
-- type: Portal
-  url: https://developer.ariba.com
-- type: Authentication
-  url: https://help.sap.com/docs/ariba-apis/help-for-sap-ariba-developer-portal/sap-ariba-developer-portal-authentication
-- type: TermsOfService
-  url: https://www.sap.com/corporate/en/legal/terms-of-use.html
-- type: PrivacyPolicy
-  url: https://www.sap.com/about/legal/privacy.html
-- type: Support
-  url: https://help.sap.com/ariba
-- type: GitHubOrganization
-  url: https://github.com/SAP-samples
-- type: CodeExamples
-  url: https://github.com/SAP-samples/ariba-extensibility-samples
-  title: SAP Ariba Extensibility Samples
-- type: SpectralRules
-  url: rules/ariba-guided-buying-spectral-rules.yml
-- type: Vocabulary
-  url: vocabulary/ariba-guided-buying-vocabulary.yaml
-- type: Features
-  data:
-  - name: Consumer-Like Shopping Experience
-    description: Provides employees with an intuitive catalog-driven shopping interface similar to consumer e-commerce applications.
-  - name: Catalog Search and Typeahead
-    description: Full-text search with typeahead autocomplete for finding catalog items from suppliers on SAP Business Network.
-  - name: Policy Compliance Enforcement
-    description: Built-in procurement policy checks ensure purchases comply with organizational spending rules and approval
-      workflows.
-  - name: Asset Management Integration
-    description: Integrates with SAP ERP asset management to assign and track asset numbers on requisition line items.
-  - name: OAuth 2.0 Authentication
-    description: Secure API access using OAuth 2.0 client credentials flow with per-API credentials.
-  - name: Faceted Search
-    description: Retrieves filter facets alongside catalog items enabling refined product browsing and discovery.
-- type: UseCases
-  data:
-  - name: Employee Self-Service Procurement
-    description: Enable employees to browse and purchase approved goods from supplier catalogs without manual procurement
-      processes.
-  - name: ERP Asset Record Import
-    description: Import asset records from SAP ERP and assign unique asset values to line items on approved requisitions.
-  - name: Catalog Integration
-    description: Integrate SAP Ariba Buying with SAP S/4HANA Cloud Public Edition to access public supplier catalogs on SAP
-      Business Network.
-  - name: Requisition Automation
-    description: Automate retrieval and processing of asset-based requisitions through the Asset Workbench workflow.
-- type: Integrations
-  data:
-  - name: SAP S/4HANA Cloud
-    description: Integrates with SAP S/4HANA Cloud Public Edition for purchase request creation and order management.
-  - name: SAP Business Network
-    description: Connects to SAP Business Network to access public supplier catalogs and pricing.
-  - name: SAP ERP
-    description: Integrates with SAP ERP systems for asset management and purchase order creation.
-  - name: SAP Integration Suite
-    description: Extends SAP Ariba functionality through SAP Integration Suite for custom workflows and data transformations.
-- type: LLMsTxt
-  url: https://developer.ariba.com/llms.txt
+  - type: Website
+    url: https://www.sap.com/products/spend-management/guided-buying.html
+  - type: Documentation
+    url: https://help.sap.com/docs/ariba-apis
+  - type: GettingStarted
+    url: https://help.sap.com/docs/ariba-apis/help-for-sap-ariba-developer-portal/sap-ariba-developer-portal-quick-start-guide-for-developers
+  - type: Portal
+    url: https://developer.ariba.com
+  - type: Authentication
+    url: https://help.sap.com/docs/ariba-apis/help-for-sap-ariba-developer-portal/sap-ariba-developer-portal-authentication
+  - type: TermsOfService
+    url: https://www.sap.com/corporate/en/legal/terms-of-use.html
+  - type: PrivacyPolicy
+    url: https://www.sap.com/about/legal/privacy.html
+  - type: Support
+    url: https://help.sap.com/ariba
+  - type: GitHubOrganization
+    url: https://github.com/SAP-samples
+  - type: CodeExamples
+    url: https://github.com/SAP-samples/ariba-extensibility-samples
+    title: SAP Ariba Extensibility Samples
+  - type: SpectralRules
+    url: rules/ariba-guided-buying-spectral-rules.yml
+  - type: Vocabulary
+    url: vocabulary/ariba-guided-buying-vocabulary.yaml
+  - type: Features
+    data:
+    - name: Consumer-Like Shopping Experience
+      description: Provides employees with an intuitive catalog-driven shopping interface similar to consumer e-commerce applications.
+    - name: Catalog Search and Typeahead
+      description: Full-text search with typeahead autocomplete for finding catalog items from suppliers on SAP Business Network.
+    - name: Policy Compliance Enforcement
+      description: Built-in procurement policy checks ensure purchases comply with organizational spending rules and approval
+        workflows.
+    - name: Asset Management Integration
+      description: Integrates with SAP ERP asset management to assign and track asset numbers on requisition line items.
+    - name: OAuth 2.0 Authentication
+      description: Secure API access using OAuth 2.0 client credentials flow with per-API credentials.
+    - name: Faceted Search
+      description: Retrieves filter facets alongside catalog items enabling refined product browsing and discovery.
+  - type: UseCases
+    data:
+    - name: Employee Self-Service Procurement
+      description: Enable employees to browse and purchase approved goods from supplier catalogs without manual procurement
+        processes.
+    - name: ERP Asset Record Import
+      description: Import asset records from SAP ERP and assign unique asset values to line items on approved requisitions.
+    - name: Catalog Integration
+      description: Integrate SAP Ariba Buying with SAP S/4HANA Cloud Public Edition to access public supplier catalogs on SAP
+        Business Network.
+    - name: Requisition Automation
+      description: Automate retrieval and processing of asset-based requisitions through the Asset Workbench workflow.
+  - type: Integrations
+    data:
+    - name: SAP S/4HANA Cloud
+      description: Integrates with SAP S/4HANA Cloud Public Edition for purchase request creation and order management.
+    - name: SAP Business Network
+      description: Connects to SAP Business Network to access public supplier catalogs and pricing.
+    - name: SAP ERP
+      description: Integrates with SAP ERP systems for asset management and purchase order creation.
+    - name: SAP Integration Suite
+      description: Extends SAP Ariba functionality through SAP Integration Suite for custom workflows and data transformations.
+  - type: LlmsText
+    url: https://developer.ariba.com/llms.txt
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
