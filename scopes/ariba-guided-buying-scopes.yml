@@ -1,0 +1,24 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/ariba-guided-buying-asset-management-api.yaml, openapi/ariba-guided-buying-catalog-shop-api.yaml
+docs: https://help.sap.com/docs/ariba-apis/help-for-sap-ariba-developer-portal/sap-ariba-developer-portal-authentication
+note: SAP Ariba APIs use two-legged OAuth (client credentials / grant_type=openapi_2lo)
+  with a per-application OAuth client ID plus Application Key, and access is granted
+  per API through SAP Ariba approval rather than OAuth scopes; no scopes are documented
+  (https://help.sap.com/docs/ariba-apis/help-for-sap-ariba-developer-portal/sap-ariba-developer-portal-authentication).
+schemes:
+- name: OAuth2
+  source: openapi/ariba-guided-buying-asset-management-api.yaml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.ariba.com/v2/oauth/token
+  description: OAuth 2.0 authentication. Obtain access token from https://api.ariba.com/v2/oauth/token
+    using client credentials.
+- name: OAuth2
+  source: openapi/ariba-guided-buying-catalog-shop-api.yaml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.ariba.com/v2/oauth/token
+  description: OAuth 2.0 authentication. Obtain access token from https://api.ariba.com/v2/oauth/token
+    using client credentials. Include the application key in the apikey header.
+scopes: []
