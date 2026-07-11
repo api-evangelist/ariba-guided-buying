@@ -84,6 +84,12 @@ apis:
   - type: X-NaftikoCapability
     url: capabilities/asset-management-requisitions.yaml
 common:
+  - type: VulnerabilityDisclosure
+    url: security/ariba-guided-buying-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/ariba-guided-buying-domain-security.yml
+  - type: Authentication
+    url: authentication/ariba-guided-buying-authentication.yml
   - type: OAuthScopes
     url: scopes/ariba-guided-buying-scopes.yml
   - type: PostmanWorkspace
