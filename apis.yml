@@ -84,6 +84,8 @@ apis:
   - type: X-NaftikoCapability
     url: capabilities/asset-management-requisitions.yaml
 common:
+  - type: AgenticAccess
+    url: agentic-access/ariba-guided-buying-agentic-access.yml
   - type: VulnerabilityDisclosure
     url: security/ariba-guided-buying-vulnerability-disclosure.yml
   - type: DomainSecurity
