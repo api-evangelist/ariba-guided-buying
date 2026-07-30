@@ -4,7 +4,20 @@ description: SAP Ariba Guided Buying provides a consumer-like shopping experienc
   to find and purchase goods and services through an intuitive catalog-driven interface with built-in approval workflows and
   policy compliance.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/ariba-guided-buying.png
 tags:
 - B2B
 - Catalog
@@ -18,22 +31,19 @@ created: '2024-01-01'
 modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
-- aid: ariba-guided-buying:ariba-guided-buying-catalog-shop-api
-  name: Ariba Guided Buying - Public Catalogs Shop API
-  description: The Public Catalogs Shop API enables applications to retrieve data related to catalog items, filter facets,
-    and matching search suggestions from public catalogs on SAP Business Network. This API supports SAP Ariba Buying, base
-    edition, integrated with SAP S/4HANA Cloud Public Edition.
+- aid: ariba-guided-buying:ariba-guided-buying-requisitions-api
+  name: Ariba Guided Buying Requisitions API
+  description: Asset requisition retrieval and update operations
   humanURL: https://help.sap.com/docs/ariba-apis
   baseURL: https://openapi.ariba.com/api/catalog-shop/v1/prod
   tags:
-  - Catalog
-  - Procurement
-  - Shopping
+  - Requisitions
   properties:
-  - type: Documentation
-    url: https://help.sap.com/doc/f2393ece78554efab2087b984c6fa90b/cloud/en-US/5e12bd6c87f24e0781a5fcdfb410ddc6.pdf
   - type: OpenAPI
-    url: openapi/ariba-guided-buying-catalog-shop-api.yaml
+    url: openapi/ariba-guided-buying-requisitions-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://help.sap.com/doc/f2393ece78554efab2087b984c6fa90b/cloud/en-US/5e12bd6c87f24e0781a5fcdfb410ddc6.pdf
   - type: JSONSchema
     url: json-schema/catalog-shop-api-shop-response-schema.json
   - type: JSONSchema
@@ -52,23 +62,57 @@ apis:
     url: json-ld/ariba-guided-buying-catalog-shop-api-context.jsonld
   - type: X-NaftikoCapability
     url: capabilities/catalog-shop-shops.yaml
-- aid: ariba-guided-buying:ariba-guided-buying-asset-management-api
-  name: Ariba Guided Buying - Asset Management API
-  description: The Asset Management API enables developers to retrieve purchase requisitions consisting of asset items and
-    update asset data on those requisitions. This API is applicable for SAP ERP-integrated sites that have enabled the asset
-    management feature.
-  humanURL: https://help.sap.com/docs/ariba-apis
-  baseURL: https://openapi.ariba.com/api/asset-management/v1/prod
-  tags:
-  - Asset Management
-  - ERP
-  - Procurement
-  - Requisitions
-  properties:
   - type: Documentation
-    url: https://help.sap.com/doc/16e046861d874557a33a1831b778d998/cloud/en-US/45d3c37cf5a643c38b9e26cc31c97470.pdf
+    url: >-
+      https://help.sap.com/doc/16e046861d874557a33a1831b778d998/cloud/en-US/45d3c37cf5a643c38b9e26cc31c97470.pdf
+  - type: JSONSchema
+    url: json-schema/asset-management-api-requisition-schema.json
+  - type: JSONSchema
+    url: json-schema/asset-management-api-asset-line-item-schema.json
+  - type: JSONSchema
+    url: json-schema/asset-management-api-batch-asset-update-request-schema.json
+  - type: JSONStructure
+    url: json-structure/asset-management-api-requisition-structure.json
+  - type: JSONStructure
+    url: json-structure/asset-management-api-asset-line-item-structure.json
+  - type: JSONLD
+    url: json-ld/ariba-guided-buying-asset-management-api-context.jsonld
+  - type: X-NaftikoCapability
+    url: capabilities/asset-management-requisitions.yaml
+- aid: ariba-guided-buying:ariba-guided-buying-shops-api
+  name: Ariba Guided Buying Shops API
+  description: Catalog shop search and retrieval operations
+  humanURL: https://help.sap.com/docs/ariba-apis
+  baseURL: https://openapi.ariba.com/api/catalog-shop/v1/prod
+  tags:
+  - Shops
+  properties:
   - type: OpenAPI
-    url: openapi/ariba-guided-buying-asset-management-api.yaml
+    url: openapi/ariba-guided-buying-shops-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://help.sap.com/doc/f2393ece78554efab2087b984c6fa90b/cloud/en-US/5e12bd6c87f24e0781a5fcdfb410ddc6.pdf
+  - type: JSONSchema
+    url: json-schema/catalog-shop-api-shop-response-schema.json
+  - type: JSONSchema
+    url: json-schema/catalog-shop-api-catalog-item-schema.json
+  - type: JSONSchema
+    url: json-schema/catalog-shop-api-facet-schema.json
+  - type: JSONSchema
+    url: json-schema/catalog-shop-api-items-response-schema.json
+  - type: JSONSchema
+    url: json-schema/catalog-shop-api-auto-complete-response-schema.json
+  - type: JSONStructure
+    url: json-structure/catalog-shop-api-shop-response-structure.json
+  - type: JSONStructure
+    url: json-structure/catalog-shop-api-catalog-item-structure.json
+  - type: JSONLD
+    url: json-ld/ariba-guided-buying-catalog-shop-api-context.jsonld
+  - type: X-NaftikoCapability
+    url: capabilities/catalog-shop-shops.yaml
+  - type: Documentation
+    url: >-
+      https://help.sap.com/doc/16e046861d874557a33a1831b778d998/cloud/en-US/45d3c37cf5a643c38b9e26cc31c97470.pdf
   - type: JSONSchema
     url: json-schema/asset-management-api-requisition-schema.json
   - type: JSONSchema
