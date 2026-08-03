@@ -1,0 +1,16 @@
+{
+  "provider": "ariba-guided-buying",
+  "sources": [
+    "ariba-guided-buying-requisitions-api-openapi.yml",
+    "ariba-guided-buying-shops-api-openapi.yml"
+  ],
+  "outputs": [
+    "ariba-guided-buying-requisitions-api-openapi.yml",
+    "ariba-guided-buying-shops-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
