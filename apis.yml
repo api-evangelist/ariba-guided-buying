@@ -60,8 +60,6 @@ apis:
     url: json-structure/catalog-shop-api-catalog-item-structure.json
   - type: JSONLD
     url: json-ld/ariba-guided-buying-catalog-shop-api-context.jsonld
-  - type: X-NaftikoCapability
-    url: capabilities/catalog-shop-shops.yaml
   - type: Documentation
     url: >-
       https://help.sap.com/doc/16e046861d874557a33a1831b778d998/cloud/en-US/45d3c37cf5a643c38b9e26cc31c97470.pdf
@@ -77,8 +75,6 @@ apis:
     url: json-structure/asset-management-api-asset-line-item-structure.json
   - type: JSONLD
     url: json-ld/ariba-guided-buying-asset-management-api-context.jsonld
-  - type: X-NaftikoCapability
-    url: capabilities/asset-management-requisitions.yaml
 - aid: ariba-guided-buying:ariba-guided-buying-shops-api
   name: Ariba Guided Buying Shops API
   description: Catalog shop search and retrieval operations
@@ -108,8 +104,6 @@ apis:
     url: json-structure/catalog-shop-api-catalog-item-structure.json
   - type: JSONLD
     url: json-ld/ariba-guided-buying-catalog-shop-api-context.jsonld
-  - type: X-NaftikoCapability
-    url: capabilities/catalog-shop-shops.yaml
   - type: Documentation
     url: >-
       https://help.sap.com/doc/16e046861d874557a33a1831b778d998/cloud/en-US/45d3c37cf5a643c38b9e26cc31c97470.pdf
@@ -125,8 +119,6 @@ apis:
     url: json-structure/asset-management-api-asset-line-item-structure.json
   - type: JSONLD
     url: json-ld/ariba-guided-buying-asset-management-api-context.jsonld
-  - type: X-NaftikoCapability
-    url: capabilities/asset-management-requisitions.yaml
 common:
   - type: AgenticAccess
     url: agentic-access/ariba-guided-buying-agentic-access.yml
