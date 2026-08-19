@@ -1,0 +1,108 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ariba Guided Buying - Asset Management Requisitions API",
+    "version": "2026-02"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://api.ariba.com/v2/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Requisitions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Ariba Guided Buying List Asset Requisitions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://openapi.ariba.com/api/asset-management/v1/prod/requisitions",
+            "params": [
+              {
+                "name": "realm",
+                "value": "mycompany-T",
+                "type": "query",
+                "description": "The SAP Ariba realm name identifying your site."
+              },
+              {
+                "name": "$filter",
+                "value": "{TimeCreated eq 2026-01-01T00:00:00Z}",
+                "type": "query",
+                "description": "Filter asset-based requisitions by attributes. Example: {TimeCreated eq 2018-09-26T09:00:00Z;TimeUpdated eq 2018-09-27T09:00:00Z}"
+              },
+              {
+                "name": "$count",
+                "value": "true",
+                "type": "query",
+                "description": "Include total count in response when set to true."
+              },
+              {
+                "name": "$skip",
+                "value": "0",
+                "type": "query",
+                "description": "Number of records to skip for pagination."
+              }
+            ]
+          },
+          "docs": "Get requisitions consisting of asset line items that are in the In Progress state in the Asset Workbench in the buying solution. Requisitions move to this state after asset managers finish their approval."
+        },
+        {
+          "info": {
+            "name": "Ariba Guided Buying Count Asset Requisitions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://openapi.ariba.com/api/asset-management/v1/prod/requisitions/$count",
+            "params": [
+              {
+                "name": "realm",
+                "value": "mycompany-T",
+                "type": "query",
+                "description": "The SAP Ariba realm name identifying your site."
+              }
+            ]
+          },
+          "docs": "Get the total count of requisitions consisting of asset line items in the buying solution."
+        },
+        {
+          "info": {
+            "name": "Ariba Guided Buying Update Asset Line Items on Requisitions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://openapi.ariba.com/api/asset-management/v1/prod/requisitions/batch/assets",
+            "params": [
+              {
+                "name": "realm",
+                "value": "mycompany-T",
+                "type": "query",
+                "description": "The SAP Ariba realm name identifying your site."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the Asset field for asset items on requisitions with unique asset values. The requisitions in which all asset items are assigned with unique asset values move under the Completed tab in the Asset Workbench and purchase orders are created after those requisitions are fully approved. Maximum 20 records per request."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

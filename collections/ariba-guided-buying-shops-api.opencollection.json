@@ -1,0 +1,116 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ariba Guided Buying - Asset Management Requisitions Shops API",
+    "version": "2026-02"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://api.ariba.com/v2/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Shops",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Ariba Guided Buying Get Shop Catalog Items and Facets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://openapi.ariba.com/api/asset-management/v1/prod/Shops(:shopID)",
+            "params": [
+              {
+                "name": "shopID",
+                "value": "shop-12345",
+                "type": "path",
+                "description": "The unique identifier of the shop on SAP Business Network."
+              },
+              {
+                "name": "$expand",
+                "value": "Items,Facets",
+                "type": "query",
+                "description": "Expand related entities. Supported values: Items, Facets. Use $expand=Items,Facets to include both."
+              },
+              {
+                "name": "$search",
+                "value": "laptop",
+                "type": "query",
+                "description": "Search term to filter catalog items."
+              }
+            ]
+          },
+          "docs": "Retrieves the details of all the catalog items and facets from public catalogs from suppliers on SAP Business Network. Use the $expand parameter to include items and facets in the response."
+        },
+        {
+          "info": {
+            "name": "Ariba Guided Buying List Shop Catalog Items",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://openapi.ariba.com/api/asset-management/v1/prod/Shops(:shopID)/Items",
+            "params": [
+              {
+                "name": "shopID",
+                "value": "shop-12345",
+                "type": "path",
+                "description": "The unique identifier of the shop on SAP Business Network."
+              },
+              {
+                "name": "$search",
+                "value": "office chair",
+                "type": "query",
+                "description": "Search terms entered by the user."
+              },
+              {
+                "name": "$select",
+                "value": "extProductId,price,vendorName",
+                "type": "query",
+                "description": "Comma-separated list of fields to return. Supported values: extProductId, leadTime, manufactCode, manufactName, price, vendor, vendorName, vendorPartId."
+              }
+            ]
+          },
+          "docs": "Returns the list of all the catalog items and their details from public catalogs on SAP Business Network. Use $search to filter by search term and $select to choose which fields are returned."
+        },
+        {
+          "info": {
+            "name": "Ariba Guided Buying Get Catalog Search Suggestions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://openapi.ariba.com/api/asset-management/v1/prod/Shops(:shopID)/AutoComplete",
+            "params": [
+              {
+                "name": "shopID",
+                "value": "shop-12345",
+                "type": "path",
+                "description": "The unique identifier of the shop on SAP Business Network."
+              },
+              {
+                "name": "$search",
+                "value": "lap",
+                "type": "query",
+                "description": "The partial search term entered by the user for typeahead suggestions."
+              }
+            ]
+          },
+          "docs": "Initiates the typeahead search feature and retrieves the list of matching search suggestions from public catalogs on SAP Business Network."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

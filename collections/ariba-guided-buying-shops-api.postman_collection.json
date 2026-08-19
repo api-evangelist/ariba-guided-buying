@@ -1,0 +1,657 @@
+{
+  "item": [
+    {
+      "id": "1bd14464-be02-497e-b798-b576dfc3756e",
+      "name": "Shops",
+      "description": {
+        "content": "Catalog shop search and retrieval operations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9ad5b395-f67c-48a9-80cf-96cbaf4ee4c9",
+          "name": "Ariba Guided Buying Get Shop Catalog Items and Facets",
+          "request": {
+            "name": "Ariba Guided Buying Get Shop Catalog Items and Facets",
+            "description": {
+              "content": "Retrieves the details of all the catalog items and facets from public catalogs from suppliers on SAP Business Network. Use the $expand parameter to include items and facets in the response.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Shops({{shopID}})"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "$expand",
+                  "value": "<string>",
+                  "description": "Expand related entities. Supported values: Items, Facets. Use $expand=Items,Facets to include both."
+                },
+                {
+                  "disabled": false,
+                  "key": "$search",
+                  "value": "<string>",
+                  "description": "Search term to filter catalog items."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "340cc8de-b84d-4792-9f23-2d05097a877a",
+              "name": "Successfully retrieved catalog items and facets.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Shops({{shopID}})"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$expand",
+                      "value": "Items,Facets"
+                    },
+                    {
+                      "key": "$search",
+                      "value": "laptop"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"shopID\": \"shop-12345\",\n  \"items\": [\n    {\n      \"extProductId\": \"PROD-001\",\n      \"price\": 499.99,\n      \"vendor\": \"VENDOR-A1B2\",\n      \"vendorName\": \"Acme Office Supplies\",\n      \"vendorPartId\": \"AOS-LAPTOP-15\",\n      \"leadTime\": 3,\n      \"manufactCode\": \"MANUF-001\",\n      \"manufactName\": \"TechCorp\"\n    }\n  ],\n  \"facets\": [\n    {\n      \"name\": \"Category\",\n      \"values\": [\n        {\n          \"label\": \"Electronics\",\n          \"count\": 42\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "49474f39-bf05-40b1-80dd-daeec056e641",
+              "name": "Bad Request - invalid fields in request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Shops({{shopID}})"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$expand",
+                      "value": "Items,Facets"
+                    },
+                    {
+                      "key": "$search",
+                      "value": "laptop"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 400,\n  \"message\": \"Bad Request\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "45a8bf67-0da2-4535-86a3-0f0958a8e47e",
+              "name": "Internal Server Error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Shops({{shopID}})"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$expand",
+                      "value": "Items,Facets"
+                    },
+                    {
+                      "key": "$search",
+                      "value": "laptop"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 400,\n  \"message\": \"Bad Request\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "94cc0cf2-8692-4656-9fe1-4675e1ae09d0",
+          "name": "Ariba Guided Buying List Shop Catalog Items",
+          "request": {
+            "name": "Ariba Guided Buying List Shop Catalog Items",
+            "description": {
+              "content": "Returns the list of all the catalog items and their details from public catalogs on SAP Business Network. Use $search to filter by search term and $select to choose which fields are returned.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Shops({{shopID}})",
+                "Items"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "$search",
+                  "value": "<string>",
+                  "description": "Search terms entered by the user."
+                },
+                {
+                  "disabled": false,
+                  "key": "$select",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to return. Supported values: extProductId, leadTime, manufactCode, manufactName, price, vendor, vendorName, vendorPartId."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "faee00ff-2b43-4333-b38c-90528376f38c",
+              "name": "Successfully retrieved list of catalog items.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Shops({{shopID}})",
+                    "Items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$search",
+                      "value": "office chair"
+                    },
+                    {
+                      "key": "$select",
+                      "value": "extProductId,price,vendorName"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"extProductId\": \"PROD-001\",\n      \"price\": 499.99,\n      \"vendor\": \"VENDOR-A1B2\",\n      \"vendorName\": \"Acme Office Supplies\",\n      \"vendorPartId\": \"AOS-LAPTOP-15\",\n      \"leadTime\": 3,\n      \"manufactCode\": \"MANUF-001\",\n      \"manufactName\": \"TechCorp\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4b89acc8-5e77-42ad-9733-d3507e6d0a3e",
+              "name": "Bad Request - invalid fields in request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Shops({{shopID}})",
+                    "Items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$search",
+                      "value": "office chair"
+                    },
+                    {
+                      "key": "$select",
+                      "value": "extProductId,price,vendorName"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 400,\n  \"message\": \"Bad Request\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f1cc71bd-0636-4a58-bbd7-3fe805bc63d0",
+              "name": "Internal Server Error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Shops({{shopID}})",
+                    "Items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$search",
+                      "value": "office chair"
+                    },
+                    {
+                      "key": "$select",
+                      "value": "extProductId,price,vendorName"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 400,\n  \"message\": \"Bad Request\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1b4425f3-0c65-49d1-b628-9b08f16a0ae5",
+          "name": "Ariba Guided Buying Get Catalog Search Suggestions",
+          "request": {
+            "name": "Ariba Guided Buying Get Catalog Search Suggestions",
+            "description": {
+              "content": "Initiates the typeahead search feature and retrieves the list of matching search suggestions from public catalogs on SAP Business Network.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Shops({{shopID}})",
+                "AutoComplete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "$search",
+                  "value": "<string>",
+                  "description": "(Required) The partial search term entered by the user for typeahead suggestions."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f9c90429-31c2-46c2-a92c-357d49698cec",
+              "name": "Successfully retrieved list of matching search suggestions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Shops({{shopID}})",
+                    "AutoComplete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$search",
+                      "value": "lap"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"suggestions\": [\n    \"laptop\",\n    \"laptop stand\",\n    \"laptop bag\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "17a04a11-b4ec-4abe-8057-7c3102dd800e",
+              "name": "Bad Request - invalid fields in request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Shops({{shopID}})",
+                    "AutoComplete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$search",
+                      "value": "lap"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 400,\n  \"message\": \"Bad Request\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1ab3a3eb-9a8e-49c7-97dd-3a71f91b1e7b",
+              "name": "Internal Server Error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Shops({{shopID}})",
+                    "AutoComplete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$search",
+                      "value": "lap"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 400,\n  \"message\": \"Bad Request\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://openapi.ariba.com/api/asset-management/v1/prod",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) The unique identifier of the shop on SAP Business Network.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<string>",
+      "key": "shopID"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://api.ariba.com/v2/oauth/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "40c0bdfd-3f33-4df9-a1aa-d91c192e33ed",
+    "name": "Ariba Guided Buying - Asset Management Requisitions Shops API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Asset Management API enables developers to construct API queries that import asset records into the SAP Ariba solution and assign unique values to asset line items on requisitions. This API is applicable for SAP ERP-integrated sites that have enabled the asset management feature.\n\nContact Support:\n Name: SAP Ariba Developer Support",
+      "type": "text/plain"
+    }
+  }
+}
