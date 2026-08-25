@@ -1,8 +1,8 @@
 aid: ariba-guided-buying
 name: Ariba Guided Buying
-description: SAP Ariba Guided Buying provides a consumer-like shopping experience for enterprise procurement, enabling employees
-  to find and purchase goods and services through an intuitive catalog-driven interface with built-in approval workflows and
-  policy compliance.
+description: SAP Ariba Guided Buying provides a consumer-like shopping experience for enterprise procurement, enabling
+  employees to find and purchase goods and services through an intuitive catalog-driven interface with built-in
+  approval workflows and policy compliance.
 type: Index
 accessModel:
   pricing: freemium
@@ -28,7 +28,7 @@ tags:
 - Supply Chain
 url: https://raw.githubusercontent.com/api-evangelist/ariba-guided-buying/refs/heads/main/apis.yml
 created: '2024-01-01'
-modified: '2026-05-19'
+modified: '2026-08-21'
 specificationVersion: '0.23'
 apis:
 - aid: ariba-guided-buying:ariba-guided-buying-requisitions-api
@@ -42,8 +42,7 @@ apis:
   - type: OpenAPI
     url: openapi/ariba-guided-buying-requisitions-api-openapi.yml
   - type: Documentation
-    url: >-
-      https://help.sap.com/doc/f2393ece78554efab2087b984c6fa90b/cloud/en-US/5e12bd6c87f24e0781a5fcdfb410ddc6.pdf
+    url: https://help.sap.com/doc/f2393ece78554efab2087b984c6fa90b/cloud/en-US/5e12bd6c87f24e0781a5fcdfb410ddc6.pdf
   - type: JSONSchema
     url: json-schema/catalog-shop-api-shop-response-schema.json
   - type: JSONSchema
@@ -61,8 +60,7 @@ apis:
   - type: JSONLD
     url: json-ld/ariba-guided-buying-catalog-shop-api-context.jsonld
   - type: Documentation
-    url: >-
-      https://help.sap.com/doc/16e046861d874557a33a1831b778d998/cloud/en-US/45d3c37cf5a643c38b9e26cc31c97470.pdf
+    url: https://help.sap.com/doc/16e046861d874557a33a1831b778d998/cloud/en-US/45d3c37cf5a643c38b9e26cc31c97470.pdf
   - type: JSONSchema
     url: json-schema/asset-management-api-requisition-schema.json
   - type: JSONSchema
@@ -86,8 +84,7 @@ apis:
   - type: OpenAPI
     url: openapi/ariba-guided-buying-shops-api-openapi.yml
   - type: Documentation
-    url: >-
-      https://help.sap.com/doc/f2393ece78554efab2087b984c6fa90b/cloud/en-US/5e12bd6c87f24e0781a5fcdfb410ddc6.pdf
+    url: https://help.sap.com/doc/f2393ece78554efab2087b984c6fa90b/cloud/en-US/5e12bd6c87f24e0781a5fcdfb410ddc6.pdf
   - type: JSONSchema
     url: json-schema/catalog-shop-api-shop-response-schema.json
   - type: JSONSchema
@@ -105,8 +102,7 @@ apis:
   - type: JSONLD
     url: json-ld/ariba-guided-buying-catalog-shop-api-context.jsonld
   - type: Documentation
-    url: >-
-      https://help.sap.com/doc/16e046861d874557a33a1831b778d998/cloud/en-US/45d3c37cf5a643c38b9e26cc31c97470.pdf
+    url: https://help.sap.com/doc/16e046861d874557a33a1831b778d998/cloud/en-US/45d3c37cf5a643c38b9e26cc31c97470.pdf
   - type: JSONSchema
     url: json-schema/asset-management-api-requisition-schema.json
   - type: JSONSchema
@@ -120,103 +116,113 @@ apis:
   - type: JSONLD
     url: json-ld/ariba-guided-buying-asset-management-api-context.jsonld
 common:
-  - type: AgenticAccess
-    url: agentic-access/ariba-guided-buying-agentic-access.yml
-  - type: VulnerabilityDisclosure
-    url: security/ariba-guided-buying-vulnerability-disclosure.yml
-  - type: DomainSecurity
-    url: security/ariba-guided-buying-domain-security.yml
-  - type: Authentication
-    url: authentication/ariba-guided-buying-authentication.yml
-  - type: OAuthScopes
-    url: scopes/ariba-guided-buying-scopes.yml
-  - type: PostmanWorkspace
-    url: https://www.postman.com/kinlaneapi/ariba-guided-buying/overview
-  - type: Arazzo
-    url: arazzo/ariba-guided-buying-assign-asset-numbers-workflow.yml
-    name: Ariba Guided Buying Assign Asset Numbers
-  - type: Arazzo
-    url: arazzo/ariba-guided-buying-browse-shop-catalog-workflow.yml
-    name: Ariba Guided Buying Browse Shop Catalog
-  - type: Arazzo
-    url: arazzo/ariba-guided-buying-catalog-to-asset-assignment-workflow.yml
-    name: Ariba Guided Buying Catalog To Asset Assignment
-  - type: Arazzo
-    url: arazzo/ariba-guided-buying-complete-and-verify-requisitions-workflow.yml
-    name: Ariba Guided Buying Complete And Verify Requisitions
-  - type: Arazzo
-    url: arazzo/ariba-guided-buying-inventory-asset-requisitions-workflow.yml
-    name: Ariba Guided Buying Inventory Asset Requisitions
-  - type: Arazzo
-    url: arazzo/ariba-guided-buying-search-shop-with-facets-workflow.yml
-    name: Ariba Guided Buying Search Shop With Facets
-  - type: Arazzo
-    url: arazzo/ariba-guided-buying-typeahead-catalog-search-workflow.yml
-    name: Ariba Guided Buying Typeahead Catalog Search
-  - type: Website
-    url: https://www.sap.com/products/spend-management/guided-buying.html
-  - type: Documentation
-    url: https://help.sap.com/docs/ariba-apis
-  - type: GettingStarted
-    url: https://help.sap.com/docs/ariba-apis/help-for-sap-ariba-developer-portal/sap-ariba-developer-portal-quick-start-guide-for-developers
-  - type: Portal
-    url: https://developer.ariba.com
-  - type: Authentication
-    url: https://help.sap.com/docs/ariba-apis/help-for-sap-ariba-developer-portal/sap-ariba-developer-portal-authentication
-  - type: TermsOfService
-    url: https://www.sap.com/corporate/en/legal/terms-of-use.html
-  - type: PrivacyPolicy
-    url: https://www.sap.com/about/legal/privacy.html
-  - type: Support
-    url: https://help.sap.com/ariba
-  - type: GitHubOrganization
-    url: https://github.com/SAP-samples
-  - type: CodeExamples
-    url: https://github.com/SAP-samples/ariba-extensibility-samples
-    title: SAP Ariba Extensibility Samples
-  - type: SpectralRules
-    url: rules/ariba-guided-buying-spectral-rules.yml
-  - type: Vocabulary
-    url: vocabulary/ariba-guided-buying-vocabulary.yaml
-  - type: Features
-    data:
-    - name: Consumer-Like Shopping Experience
-      description: Provides employees with an intuitive catalog-driven shopping interface similar to consumer e-commerce applications.
-    - name: Catalog Search and Typeahead
-      description: Full-text search with typeahead autocomplete for finding catalog items from suppliers on SAP Business Network.
-    - name: Policy Compliance Enforcement
-      description: Built-in procurement policy checks ensure purchases comply with organizational spending rules and approval
-        workflows.
-    - name: Asset Management Integration
-      description: Integrates with SAP ERP asset management to assign and track asset numbers on requisition line items.
-    - name: OAuth 2.0 Authentication
-      description: Secure API access using OAuth 2.0 client credentials flow with per-API credentials.
-    - name: Faceted Search
-      description: Retrieves filter facets alongside catalog items enabling refined product browsing and discovery.
-  - type: UseCases
-    data:
-    - name: Employee Self-Service Procurement
-      description: Enable employees to browse and purchase approved goods from supplier catalogs without manual procurement
-        processes.
-    - name: ERP Asset Record Import
-      description: Import asset records from SAP ERP and assign unique asset values to line items on approved requisitions.
-    - name: Catalog Integration
-      description: Integrate SAP Ariba Buying with SAP S/4HANA Cloud Public Edition to access public supplier catalogs on SAP
-        Business Network.
-    - name: Requisition Automation
-      description: Automate retrieval and processing of asset-based requisitions through the Asset Workbench workflow.
-  - type: Integrations
-    data:
-    - name: SAP S/4HANA Cloud
-      description: Integrates with SAP S/4HANA Cloud Public Edition for purchase request creation and order management.
-    - name: SAP Business Network
-      description: Connects to SAP Business Network to access public supplier catalogs and pricing.
-    - name: SAP ERP
-      description: Integrates with SAP ERP systems for asset management and purchase order creation.
-    - name: SAP Integration Suite
-      description: Extends SAP Ariba functionality through SAP Integration Suite for custom workflows and data transformations.
-  - type: LlmsText
-    url: https://developer.ariba.com/llms.txt
+- type: ParentCompany
+  url: https://apis.io/providers/sap/
+  name: Sap
+  x-relationship: acquisition
+  x-generated-by: sap-family:2026-08-21
+- type: AgenticAccess
+  url: agentic-access/ariba-guided-buying-agentic-access.yml
+- type: VulnerabilityDisclosure
+  url: security/ariba-guided-buying-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/ariba-guided-buying-domain-security.yml
+- type: Authentication
+  url: authentication/ariba-guided-buying-authentication.yml
+- type: OAuthScopes
+  url: scopes/ariba-guided-buying-scopes.yml
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/ariba-guided-buying/overview
+- type: Arazzo
+  url: arazzo/ariba-guided-buying-assign-asset-numbers-workflow.yml
+  name: Ariba Guided Buying Assign Asset Numbers
+- type: Arazzo
+  url: arazzo/ariba-guided-buying-browse-shop-catalog-workflow.yml
+  name: Ariba Guided Buying Browse Shop Catalog
+- type: Arazzo
+  url: arazzo/ariba-guided-buying-catalog-to-asset-assignment-workflow.yml
+  name: Ariba Guided Buying Catalog To Asset Assignment
+- type: Arazzo
+  url: arazzo/ariba-guided-buying-complete-and-verify-requisitions-workflow.yml
+  name: Ariba Guided Buying Complete And Verify Requisitions
+- type: Arazzo
+  url: arazzo/ariba-guided-buying-inventory-asset-requisitions-workflow.yml
+  name: Ariba Guided Buying Inventory Asset Requisitions
+- type: Arazzo
+  url: arazzo/ariba-guided-buying-search-shop-with-facets-workflow.yml
+  name: Ariba Guided Buying Search Shop With Facets
+- type: Arazzo
+  url: arazzo/ariba-guided-buying-typeahead-catalog-search-workflow.yml
+  name: Ariba Guided Buying Typeahead Catalog Search
+- type: Website
+  url: https://www.sap.com/products/spend-management/guided-buying.html
+- type: Documentation
+  url: https://help.sap.com/docs/ariba-apis
+- type: GettingStarted
+  url: https://help.sap.com/docs/ariba-apis/help-for-sap-ariba-developer-portal/sap-ariba-developer-portal-quick-start-guide-for-developers
+- type: Portal
+  url: https://developer.ariba.com
+- type: Authentication
+  url: https://help.sap.com/docs/ariba-apis/help-for-sap-ariba-developer-portal/sap-ariba-developer-portal-authentication
+- type: TermsOfService
+  url: https://www.sap.com/corporate/en/legal/terms-of-use.html
+- type: PrivacyPolicy
+  url: https://www.sap.com/about/legal/privacy.html
+- type: Support
+  url: https://help.sap.com/ariba
+- type: GitHubOrganization
+  url: https://github.com/SAP-samples
+- type: CodeExamples
+  url: https://github.com/SAP-samples/ariba-extensibility-samples
+  title: SAP Ariba Extensibility Samples
+- type: SpectralRules
+  url: rules/ariba-guided-buying-spectral-rules.yml
+- type: Vocabulary
+  url: vocabulary/ariba-guided-buying-vocabulary.yaml
+- type: Features
+  data:
+  - name: Consumer-Like Shopping Experience
+    description: Provides employees with an intuitive catalog-driven shopping interface similar to consumer e-commerce
+      applications.
+  - name: Catalog Search and Typeahead
+    description: Full-text search with typeahead autocomplete for finding catalog items from suppliers on SAP Business
+      Network.
+  - name: Policy Compliance Enforcement
+    description: Built-in procurement policy checks ensure purchases comply with organizational spending rules and
+      approval workflows.
+  - name: Asset Management Integration
+    description: Integrates with SAP ERP asset management to assign and track asset numbers on requisition line
+      items.
+  - name: OAuth 2.0 Authentication
+    description: Secure API access using OAuth 2.0 client credentials flow with per-API credentials.
+  - name: Faceted Search
+    description: Retrieves filter facets alongside catalog items enabling refined product browsing and discovery.
+- type: UseCases
+  data:
+  - name: Employee Self-Service Procurement
+    description: Enable employees to browse and purchase approved goods from supplier catalogs without manual procurement
+      processes.
+  - name: ERP Asset Record Import
+    description: Import asset records from SAP ERP and assign unique asset values to line items on approved requisitions.
+  - name: Catalog Integration
+    description: Integrate SAP Ariba Buying with SAP S/4HANA Cloud Public Edition to access public supplier catalogs
+      on SAP Business Network.
+  - name: Requisition Automation
+    description: Automate retrieval and processing of asset-based requisitions through the Asset Workbench workflow.
+- type: Integrations
+  data:
+  - name: SAP S/4HANA Cloud
+    description: Integrates with SAP S/4HANA Cloud Public Edition for purchase request creation and order management.
+  - name: SAP Business Network
+    description: Connects to SAP Business Network to access public supplier catalogs and pricing.
+  - name: SAP ERP
+    description: Integrates with SAP ERP systems for asset management and purchase order creation.
+  - name: SAP Integration Suite
+    description: Extends SAP Ariba functionality through SAP Integration Suite for custom workflows and data transformations.
+- type: LlmsText
+  url: https://developer.ariba.com/llms.txt
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
+x-parent: sap
+x-relationship: acquisition
