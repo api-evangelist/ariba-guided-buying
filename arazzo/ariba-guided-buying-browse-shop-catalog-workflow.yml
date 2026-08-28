@@ -12,8 +12,8 @@ info:
     the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: catalogShopApi
-  url: ../openapi/ariba-guided-buying-catalog-shop-api.yaml
+- name: shopsApi
+  url: ../openapi/ariba-guided-buying-shops-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: browse-shop-catalog

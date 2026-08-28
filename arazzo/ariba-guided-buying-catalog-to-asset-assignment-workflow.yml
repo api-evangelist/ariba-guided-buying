@@ -13,11 +13,11 @@ info:
     without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: catalogShopApi
-  url: ../openapi/ariba-guided-buying-catalog-shop-api.yaml
+- name: requisitionsApi
+  url: ../openapi/ariba-guided-buying-requisitions-api-openapi.yml
   type: openapi
-- name: assetManagementApi
-  url: ../openapi/ariba-guided-buying-asset-management-api.yaml
+- name: shopsApi
+  url: ../openapi/ariba-guided-buying-shops-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: catalog-to-asset-assignment

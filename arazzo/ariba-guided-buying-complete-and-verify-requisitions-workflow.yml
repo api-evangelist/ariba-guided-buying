@@ -12,8 +12,8 @@ info:
     description.
   version: 1.0.0
 sourceDescriptions:
-- name: assetManagementApi
-  url: ../openapi/ariba-guided-buying-asset-management-api.yaml
+- name: requisitionsApi
+  url: ../openapi/ariba-guided-buying-requisitions-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: complete-and-verify-requisitions
