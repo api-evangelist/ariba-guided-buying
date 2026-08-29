@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Ariba Guided Buying - Asset Management Requisitions Shops API
   description: The Asset Management API enables developers to construct API queries that import asset records into the SAP Ariba solution and assign unique values to asset line items on requisitions. This API is applicable for SAP ERP-integrated sites that have enabled the asset management feature.
@@ -210,19 +210,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    AutoCompleteResponse:
-      title: AutoCompleteResponse
-      description: Response containing typeahead search suggestions.
-      type: object
-      properties:
-        suggestions:
-          type: array
-          description: List of matching search suggestion strings.
-          items:
-            type: string
-          example:
-          - laptop
-          - laptop stand
     CatalogItem:
       title: CatalogItem
       description: A catalog item from a public catalog on SAP Business Network.
@@ -260,43 +247,6 @@ components:
           type: string
           description: Vendor-specific part identifier.
           example: AOS-LAPTOP-15
-    Facet:
-      title: Facet
-      description: A filter facet for catalog search results.
-      type: object
-      properties:
-        name:
-          type: string
-          description: Facet name.
-          example: Category
-        values:
-          type: array
-          description: Facet values with counts.
-          items:
-            $ref: '#/components/schemas/FacetValue'
-    ItemsResponse:
-      title: ItemsResponse
-      description: Response containing a list of catalog items.
-      type: object
-      properties:
-        items:
-          type: array
-          description: List of catalog items.
-          items:
-            $ref: '#/components/schemas/CatalogItem'
-    ErrorResponse:
-      title: ErrorResponse
-      description: Error response returned by the API.
-      type: object
-      properties:
-        code:
-          type: integer
-          description: HTTP status code.
-          example: 400
-        message:
-          type: string
-          description: Error message describing the issue.
-          example: Bad Request
     ShopResponse:
       title: ShopResponse
       description: Response containing catalog items and facets for a shop.
@@ -329,6 +279,56 @@ components:
           type: integer
           description: Number of items matching this facet value.
           example: 42
+    AutoCompleteResponse:
+      title: AutoCompleteResponse
+      description: Response containing typeahead search suggestions.
+      type: object
+      properties:
+        suggestions:
+          type: array
+          description: List of matching search suggestion strings.
+          items:
+            type: string
+          example:
+          - laptop
+          - laptop stand
+    ItemsResponse:
+      title: ItemsResponse
+      description: Response containing a list of catalog items.
+      type: object
+      properties:
+        items:
+          type: array
+          description: List of catalog items.
+          items:
+            $ref: '#/components/schemas/CatalogItem'
+    ErrorResponse:
+      title: ErrorResponse
+      description: Error response returned by the API.
+      type: object
+      properties:
+        code:
+          type: integer
+          description: HTTP status code.
+          example: 400
+        message:
+          type: string
+          description: Error message describing the issue.
+          example: Bad Request
+    Facet:
+      title: Facet
+      description: A filter facet for catalog search results.
+      type: object
+      properties:
+        name:
+          type: string
+          description: Facet name.
+          example: Category
+        values:
+          type: array
+          description: Facet values with counts.
+          items:
+            $ref: '#/components/schemas/FacetValue'
   securitySchemes:
     OAuth2:
       type: oauth2

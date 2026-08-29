@@ -11,6 +11,10 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
+  "notes": [
+    "ariba-guided-buying-requisitions-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "ariba-guided-buying-shops-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
   "skipped": []
 }
