@@ -1,17 +1,17 @@
 openapi: 3.2.0
 info:
-  title: Ariba Guided Buying - Asset Management Requisitions Shops API
-  description: The Asset Management API enables developers to construct API queries that import asset records into the SAP Ariba solution and assign unique values to asset line items on requisitions. This API is applicable for SAP ERP-integrated sites that have enabled the asset management feature.
-  version: 2026-02
+  title: Ariba Guided Buying - Public Catalogs Shop Shops API
+  description: The Public Catalogs Shop API enables applications to retrieve data related to catalog items, filter facets, and matching search suggestions from public catalogs on SAP Business Network. This API is supported for use within SAP Ariba Buying, base edition, which is integrated with SAP S/4HANA Cloud Public Edition.
+  version: 2026-04
   contact:
     name: SAP Ariba Developer Support
     url: https://developer.ariba.com
   x-generated-from: documentation
   x-last-validated: '2026-04-19'
 servers:
-- url: https://openapi.ariba.com/api/asset-management/v1/prod
+- url: https://openapi.ariba.com/api/catalog-shop/v1/prod
   description: Production environment
-- url: https://openapi.ariba.com/api/asset-management/v1/sandbox
+- url: https://openapi.ariba.com/api/catalog-shop/v1/sandbox
   description: Sandbox environment
 security:
 - OAuth2: []
@@ -210,6 +210,48 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    ShopResponse:
+      title: ShopResponse
+      description: Response containing catalog items and facets for a shop.
+      type: object
+      properties:
+        shopID:
+          type: string
+          description: The unique identifier of the shop.
+          example: shop-12345
+        items:
+          type: array
+          description: List of catalog items.
+          items:
+            $ref: '#/components/schemas/CatalogItem'
+        facets:
+          type: array
+          description: List of filter facets.
+          items:
+            $ref: '#/components/schemas/Facet'
+    AutoCompleteResponse:
+      title: AutoCompleteResponse
+      description: Response containing typeahead search suggestions.
+      type: object
+      properties:
+        suggestions:
+          type: array
+          description: List of matching search suggestion strings.
+          items:
+            type: string
+          example:
+          - laptop
+          - laptop stand
+    ItemsResponse:
+      title: ItemsResponse
+      description: Response containing a list of catalog items.
+      type: object
+      properties:
+        items:
+          type: array
+          description: List of catalog items.
+          items:
+            $ref: '#/components/schemas/CatalogItem'
     CatalogItem:
       title: CatalogItem
       description: A catalog item from a public catalog on SAP Business Network.
@@ -247,61 +289,6 @@ components:
           type: string
           description: Vendor-specific part identifier.
           example: AOS-LAPTOP-15
-    ShopResponse:
-      title: ShopResponse
-      description: Response containing catalog items and facets for a shop.
-      type: object
-      properties:
-        shopID:
-          type: string
-          description: The unique identifier of the shop.
-          example: shop-12345
-        items:
-          type: array
-          description: List of catalog items.
-          items:
-            $ref: '#/components/schemas/CatalogItem'
-        facets:
-          type: array
-          description: List of filter facets.
-          items:
-            $ref: '#/components/schemas/Facet'
-    FacetValue:
-      title: FacetValue
-      description: A single facet value with item count.
-      type: object
-      properties:
-        label:
-          type: string
-          description: Display label for this facet value.
-          example: Electronics
-        count:
-          type: integer
-          description: Number of items matching this facet value.
-          example: 42
-    AutoCompleteResponse:
-      title: AutoCompleteResponse
-      description: Response containing typeahead search suggestions.
-      type: object
-      properties:
-        suggestions:
-          type: array
-          description: List of matching search suggestion strings.
-          items:
-            type: string
-          example:
-          - laptop
-          - laptop stand
-    ItemsResponse:
-      title: ItemsResponse
-      description: Response containing a list of catalog items.
-      type: object
-      properties:
-        items:
-          type: array
-          description: List of catalog items.
-          items:
-            $ref: '#/components/schemas/CatalogItem'
     ErrorResponse:
       title: ErrorResponse
       description: Error response returned by the API.
@@ -329,10 +316,23 @@ components:
           description: Facet values with counts.
           items:
             $ref: '#/components/schemas/FacetValue'
+    FacetValue:
+      title: FacetValue
+      description: A single facet value with item count.
+      type: object
+      properties:
+        label:
+          type: string
+          description: Display label for this facet value.
+          example: Electronics
+        count:
+          type: integer
+          description: Number of items matching this facet value.
+          example: 42
   securitySchemes:
     OAuth2:
       type: oauth2
-      description: OAuth 2.0 authentication. Obtain access token from https://api.ariba.com/v2/oauth/token using client credentials.
+      description: OAuth 2.0 authentication. Obtain access token from https://api.ariba.com/v2/oauth/token using client credentials. Include the application key in the apikey header.
       flows:
         clientCredentials:
           tokenUrl: https://api.ariba.com/v2/oauth/token
