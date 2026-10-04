@@ -247,19 +247,6 @@ components:
           type: string
           description: Vendor-specific part identifier.
           example: AOS-LAPTOP-15
-    FacetValue:
-      title: FacetValue
-      description: A single facet value with item count.
-      type: object
-      properties:
-        label:
-          type: string
-          description: Display label for this facet value.
-          example: Electronics
-        count:
-          type: integer
-          description: Number of items matching this facet value.
-          example: 42
     ErrorResponse:
       title: ErrorResponse
       description: Error response returned by the API.
@@ -273,16 +260,20 @@ components:
           type: string
           description: Error message describing the issue.
           example: Bad Request
-    ItemsResponse:
-      title: ItemsResponse
-      description: Response containing a list of catalog items.
+    Facet:
+      title: Facet
+      description: A filter facet for catalog search results.
       type: object
       properties:
-        items:
+        name:
+          type: string
+          description: Facet name.
+          example: Category
+        values:
           type: array
-          description: List of catalog items.
+          description: Facet values with counts.
           items:
-            $ref: '#/components/schemas/CatalogItem'
+            $ref: '#/components/schemas/FacetValue'
     ShopResponse:
       title: ShopResponse
       description: Response containing catalog items and facets for a shop.
@@ -302,6 +293,29 @@ components:
           description: List of filter facets.
           items:
             $ref: '#/components/schemas/Facet'
+    FacetValue:
+      title: FacetValue
+      description: A single facet value with item count.
+      type: object
+      properties:
+        label:
+          type: string
+          description: Display label for this facet value.
+          example: Electronics
+        count:
+          type: integer
+          description: Number of items matching this facet value.
+          example: 42
+    ItemsResponse:
+      title: ItemsResponse
+      description: Response containing a list of catalog items.
+      type: object
+      properties:
+        items:
+          type: array
+          description: List of catalog items.
+          items:
+            $ref: '#/components/schemas/CatalogItem'
     AutoCompleteResponse:
       title: AutoCompleteResponse
       description: Response containing typeahead search suggestions.
@@ -315,20 +329,6 @@ components:
           example:
           - laptop
           - laptop stand
-    Facet:
-      title: Facet
-      description: A filter facet for catalog search results.
-      type: object
-      properties:
-        name:
-          type: string
-          description: Facet name.
-          example: Category
-        values:
-          type: array
-          description: Facet values with counts.
-          items:
-            $ref: '#/components/schemas/FacetValue'
   securitySchemes:
     OAuth2:
       type: oauth2

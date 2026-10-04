@@ -230,18 +230,19 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    BatchAssetUpdateRequest:
-      title: BatchAssetUpdateRequest
-      description: Request body for batch asset line item updates.
+    ErrorResponse:
+      title: ErrorResponse
+      description: Error response.
       type: object
-      required:
-      - updates
       properties:
-        updates:
-          type: array
-          description: List of asset line item updates. Maximum 20 records.
-          items:
-            $ref: '#/components/schemas/AssetLineItemUpdate'
+        code:
+          type: integer
+          description: HTTP status code.
+          example: 400
+        message:
+          type: string
+          description: Error message.
+          example: Bad Request
     RequisitionsResponse:
       title: RequisitionsResponse
       description: Response containing a list of asset requisitions.
@@ -256,6 +257,39 @@ components:
           description: List of requisitions with asset line items.
           items:
             $ref: '#/components/schemas/Requisition'
+    BatchAssetUpdateRequest:
+      title: BatchAssetUpdateRequest
+      description: Request body for batch asset line item updates.
+      type: object
+      required:
+      - updates
+      properties:
+        updates:
+          type: array
+          description: List of asset line item updates. Maximum 20 records.
+          items:
+            $ref: '#/components/schemas/AssetLineItemUpdate'
+    AssetLineItemUpdate:
+      title: AssetLineItemUpdate
+      description: An individual asset line item update.
+      type: object
+      required:
+      - requisitionId
+      - lineItemId
+      - assetNumber
+      properties:
+        requisitionId:
+          type: string
+          description: Requisition identifier.
+          example: REQ-500123
+        lineItemId:
+          type: string
+          description: Line item identifier within the requisition.
+          example: LINE-001
+        assetNumber:
+          type: string
+          description: Unique asset number assigned to this line item.
+          example: ASSET-001234
     Requisition:
       title: Requisition
       description: A purchase requisition with asset line items.
@@ -318,28 +352,6 @@ components:
           type: string
           description: Assigned asset number (populated after update).
           example: ASSET-001234
-    CountResponse:
-      title: CountResponse
-      description: Response containing count of asset requisitions.
-      type: object
-      properties:
-        count:
-          type: integer
-          description: Total count of asset requisitions.
-          example: 42
-    ErrorResponse:
-      title: ErrorResponse
-      description: Error response.
-      type: object
-      properties:
-        code:
-          type: integer
-          description: HTTP status code.
-          example: 400
-        message:
-          type: string
-          description: Error message.
-          example: Bad Request
     BatchUpdateResponse:
       title: BatchUpdateResponse
       description: Response for batch asset line item update.
@@ -357,27 +369,15 @@ components:
           type: integer
           description: Number of records that failed to update.
           example: 0
-    AssetLineItemUpdate:
-      title: AssetLineItemUpdate
-      description: An individual asset line item update.
+    CountResponse:
+      title: CountResponse
+      description: Response containing count of asset requisitions.
       type: object
-      required:
-      - requisitionId
-      - lineItemId
-      - assetNumber
       properties:
-        requisitionId:
-          type: string
-          description: Requisition identifier.
-          example: REQ-500123
-        lineItemId:
-          type: string
-          description: Line item identifier within the requisition.
-          example: LINE-001
-        assetNumber:
-          type: string
-          description: Unique asset number assigned to this line item.
-          example: ASSET-001234
+        count:
+          type: integer
+          description: Total count of asset requisitions.
+          example: 42
   securitySchemes:
     OAuth2:
       type: oauth2
