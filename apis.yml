@@ -131,6 +131,12 @@ apis:
   - type: JSONLD
     url: json-ld/ariba-guided-buying-asset-management-api-context.jsonld
 common:
+- type: Plans
+  url: plans/ariba-guided-buying-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/ariba-guided-buying-rate-limits.yml
+- type: FinOps
+  url: finops/ariba-guided-buying-finops.yml
 - type: ParentCompany
   url: https://apis.io/providers/sap/
   name: Sap
