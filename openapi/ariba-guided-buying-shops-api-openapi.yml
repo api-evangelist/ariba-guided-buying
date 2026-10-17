@@ -210,6 +210,88 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    Facet:
+      title: Facet
+      description: A filter facet for catalog search results.
+      type: object
+      properties:
+        name:
+          type: string
+          description: Facet name.
+          example: Category
+        values:
+          type: array
+          description: Facet values with counts.
+          items:
+            $ref: '#/components/schemas/FacetValue'
+    ItemsResponse:
+      title: ItemsResponse
+      description: Response containing a list of catalog items.
+      type: object
+      properties:
+        items:
+          type: array
+          description: List of catalog items.
+          items:
+            $ref: '#/components/schemas/CatalogItem'
+    ShopResponse:
+      title: ShopResponse
+      description: Response containing catalog items and facets for a shop.
+      type: object
+      properties:
+        shopID:
+          type: string
+          description: The unique identifier of the shop.
+          example: shop-12345
+        items:
+          type: array
+          description: List of catalog items.
+          items:
+            $ref: '#/components/schemas/CatalogItem'
+        facets:
+          type: array
+          description: List of filter facets.
+          items:
+            $ref: '#/components/schemas/Facet'
+    AutoCompleteResponse:
+      title: AutoCompleteResponse
+      description: Response containing typeahead search suggestions.
+      type: object
+      properties:
+        suggestions:
+          type: array
+          description: List of matching search suggestion strings.
+          items:
+            type: string
+          example:
+          - laptop
+          - laptop stand
+    ErrorResponse:
+      title: ErrorResponse
+      description: Error response returned by the API.
+      type: object
+      properties:
+        code:
+          type: integer
+          description: HTTP status code.
+          example: 400
+        message:
+          type: string
+          description: Error message describing the issue.
+          example: Bad Request
+    FacetValue:
+      title: FacetValue
+      description: A single facet value with item count.
+      type: object
+      properties:
+        label:
+          type: string
+          description: Display label for this facet value.
+          example: Electronics
+        count:
+          type: integer
+          description: Number of items matching this facet value.
+          example: 42
     CatalogItem:
       title: CatalogItem
       description: A catalog item from a public catalog on SAP Business Network.
@@ -247,88 +329,6 @@ components:
           type: string
           description: Vendor-specific part identifier.
           example: AOS-LAPTOP-15
-    ErrorResponse:
-      title: ErrorResponse
-      description: Error response returned by the API.
-      type: object
-      properties:
-        code:
-          type: integer
-          description: HTTP status code.
-          example: 400
-        message:
-          type: string
-          description: Error message describing the issue.
-          example: Bad Request
-    Facet:
-      title: Facet
-      description: A filter facet for catalog search results.
-      type: object
-      properties:
-        name:
-          type: string
-          description: Facet name.
-          example: Category
-        values:
-          type: array
-          description: Facet values with counts.
-          items:
-            $ref: '#/components/schemas/FacetValue'
-    ShopResponse:
-      title: ShopResponse
-      description: Response containing catalog items and facets for a shop.
-      type: object
-      properties:
-        shopID:
-          type: string
-          description: The unique identifier of the shop.
-          example: shop-12345
-        items:
-          type: array
-          description: List of catalog items.
-          items:
-            $ref: '#/components/schemas/CatalogItem'
-        facets:
-          type: array
-          description: List of filter facets.
-          items:
-            $ref: '#/components/schemas/Facet'
-    FacetValue:
-      title: FacetValue
-      description: A single facet value with item count.
-      type: object
-      properties:
-        label:
-          type: string
-          description: Display label for this facet value.
-          example: Electronics
-        count:
-          type: integer
-          description: Number of items matching this facet value.
-          example: 42
-    ItemsResponse:
-      title: ItemsResponse
-      description: Response containing a list of catalog items.
-      type: object
-      properties:
-        items:
-          type: array
-          description: List of catalog items.
-          items:
-            $ref: '#/components/schemas/CatalogItem'
-    AutoCompleteResponse:
-      title: AutoCompleteResponse
-      description: Response containing typeahead search suggestions.
-      type: object
-      properties:
-        suggestions:
-          type: array
-          description: List of matching search suggestion strings.
-          items:
-            type: string
-          example:
-          - laptop
-          - laptop stand
   securitySchemes:
     OAuth2:
       type: oauth2
